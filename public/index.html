@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>DoHJS</title>
+
+  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+
+  <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">dohjs</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </nav>
+  <div class="container-fluid">
+    <div class="row mt-4">
+      <div class="col">
+        <div class="card mx-auto  " style="width: 36rem;">
+          <div class="card-header">
+            <h4>Try DoH!</h4>
+          </div>
+          <div class="card-body">
+            <div id="try-doh-form">
+              <div class="form-group">
+                <label for="doh-url"></label><input class="form-control" type="text" id="doh-url" name="doh-url" value="" placeholder="e.g. https//example.com/dns-query">
+                <div class="form-text small">
+                  Where to send the DNS query. No default.
+                  <br>
+                  <span class="font-weight-bold font-italic">Hint:</span> If you run into CORS issues, prepend "https://cors-anywhere.herokuapp.com/" to the URL.
+                  <br>
+                  <span class="font-weight-bold">Example:</span> https://cors-anywhere.herokuapp.com/https://dns.google/dns-query
+                  <br>
+                  See also: <a href="https://stackoverflow.com/a/43881141/9638991">Stack Overflow answer about CORS issues</a>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="doh-qname"></label><input class="form-control" type="text" id="doh-qname" name="doh-qname" value="" placeholder="example.com">
+                <div class="form-text small">Domain name to query for. Default is example.com</div>
+              </div>
+              <div class="form-group">
+                <label for="doh-qtype"></label><input class="form-control" type="text" id="doh-qtype" name="doh-qtype" value="" placeholder="A">
+                <div class="form-text small">Type of query to send. Default is A</div>
+              </div>
+              <div class="form-group">
+                <label for="doh-method"></label><input class="form-control" type="text" id="doh-method" name="doh-method" value="" placeholder="POST">
+                <div class="form-text small">Method to use in HTTPS request. GET or POST. Default is POST.</div>
+              </div>
+              <button class="btn btn-outline-success" id="do-doh">Do DoH</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 mx-auto">
+        <div class="card" style="width: 36rem;">
+          <div class="card-body">
+            <h4 class="card-title">Response</h4>
+            <div class="card-text">
+              <p>The response will show up here (assuming you get a response)</p>
+              <hr>
+              <div id="doh-response"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="./bundle.js"></script>
+</body>
+</html>

@@ -1,8 +1,6 @@
 #!/usr/bin/env node
 'use strict';
 
-const dnsPacket = require('dns-packet');
-const https = require('https');
 const doh = require('../lib/doh.js');
 const ArgumentParser = require('argparse').ArgumentParser;
 

@@ -5,11 +5,18 @@
   "main": "lib/doh.js",
   "dependencies": {
     "argparse": "^1.0.10",
-    "dns-packet": "^5.2.1"
+    "bootstrap": "^4.4.1",
+    "browserify": "^16.5.0",
+    "dns-packet": "^5.2.1",
+    "jquery": "^3.4.1",
+    "popper.js": "^1.16.0"
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "python -m http.server",
+    "build": "cd public && browserify main.js -o bundle.js",
+    "prestart": "npm run build"
   },
   "repository": {
     "type": "git",
