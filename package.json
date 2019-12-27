@@ -13,7 +13,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "./test.sh",
     "start": "python -m http.server",
     "build": "cd public && browserify main.js -o bundle.js",
     "prestart": "npm run build"
@@ -34,5 +34,6 @@
   "homepage": "https://github.com/byu-imaal/dohjs#readme",
   "bin": {
     "do-doh": "./bin/doh.js"
-  }
+  },
+  "publishConfig": { "registry": "https://npm.pkg.github.com/" }
 }
