@@ -1,0 +1,31 @@
+{
+  "name": "dohjs",
+  "version": "1.0.0",
+  "description": "DNS over HTTPS Javascript Client",
+  "main": "lib/doh.js",
+  "dependencies": {
+    "argparse": "^1.0.10",
+    "dns-packet": "^5.2.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/byu-imaal/dohjs.git"
+  },
+  "keywords": [
+    "DNS",
+    "DoH"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/byu-imaal/dohjs/issues"
+  },
+  "homepage": "https://github.com/byu-imaal/dohjs#readme",
+  "bin": {
+    "do-doh": "./bin/doh.js"
+  }
+}
