@@ -1,6 +1,6 @@
 {
-  "name": "dohjs",
-  "version": "1.0.0",
+  "name": "@byu-imaal/dohjs",
+  "version": "0.1.0",
   "description": "DNS over HTTPS Javascript Client",
   "main": "lib/doh.js",
   "dependencies": {
