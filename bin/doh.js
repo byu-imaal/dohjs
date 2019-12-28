@@ -4,7 +4,7 @@
 const doh = require('../lib/doh.js');
 const ArgumentParser = require('argparse').ArgumentParser;
 
-var parser = new ArgumentParser({
+let parser = new ArgumentParser({
     version: '0.0.1',
     addHelp: true,
     description: 'DNS over HTTPS lookup command line tool'
@@ -33,5 +33,21 @@ parser.addArgument(
     help: 'Query type. Default is "A"'
   }
 );
-var args = parser.parseArgs();
+parser.addArgument(
+    ['--ecs', '--subnet'],
+    {
+        help: 'EDNS Client Subnet option to include, in the format <address>/<source-prefix-len>',
+        dest: '_subnet'
+    }
+);
+let args = parser.parseArgs();
+if (args._subnet) {
+    console.log(args._subnet);
+    let split = args._subnet.split('/');
+    if (split.length !== 2) {
+        parser.exit(1, 'Invalid format for --ecs/--subnet option. Must be "<address>/<source-prefix-len>"\n');
+    }
+    args.ecsAddress = split[0];
+    args.sourcePrefixLength = split[1];
+}
 doh(args);
