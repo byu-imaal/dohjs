@@ -21,3 +21,5 @@ doh_test https://cloudflare-dns.com/dns-query -t AAAA
 doh_test https://cloudflare-dns.com/dns-query -q example.net -t TXT -m GET
 doh_test https://dns.quad9.net/dns-query
 doh_test https://dns.quad9.net/dns-query -m GET -q com -t NS
+doh_test https://dns.google/dns-query -m POST --ecs 1.2.3.4/24 -q google.com -t AAAA
+doh_test https://cloudflare-dns.com/dns-query -m POST --subnet ::/56 -q cloudflare.com -t A
