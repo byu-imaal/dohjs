@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>About DoHJS</title>
+
+  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+
+  <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">dohjs</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <!-- Not open source right now so not including Github link -->
+      <!--        <li class="nav-item">-->
+      <!--          <a  class="nav-link" href="https://github.com/byu-imaal/dohjs">Github</a>-->
+      <!--        </li>-->
+      <li class="nav-item">
+        <a class="nav-link" href="index.html">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" href="about.html">About</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="container-fluid">
+  <div class="row mt-4">
+    <div class="col">
+      <div class="card" style="width: 36rem">
+        <div class="card-header">
+          <h4>Why DoH? From the RFC authors.</h4>
+        </div>
+        <div class="card-body">
+          <blockquote class="blockquote mb-0">
+            <p>Two primary use cases were considered during this protocol's
+              development.  These use cases are preventing on-path devices from
+              interfering with DNS operations, and also<span class="font-weight-bold"> allowing web applications
+              to access DNS information via existing browser APIs in a safe way
+              consistent with Cross Origin Resource Sharing (CORS).</span>  No
+              special effort has been taken to enable or prevent application to
+              other use cases.  This document focuses on communication between DNS
+              clients (such as operating system stub resolvers) and recursive
+              resolvers.</p>
+            <footer class="blockquote-footer"> Section 1 of <a href="https://tools.ietf.org/html/rfc8484#section-1">RFC 8484</a>
+              <span class="font-weight-bold">"DNS Queries over HTTPS (DoH)"</span> <br>(emphasis added)</footer>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          This site features a client-side browser implementation of DNS over HTTPS.
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card mx-auto  " style="width: 30rem;">
+        <div class="card-body">
+          <h4 class="card-title">Credits</h4>
+          A big <h1 class="text-success">THANKS</h1> to all the maintainers and contributors of the following JavaScript packages:
+          <hr>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><a href="https://github.com/mafintosh/dns-packet">dns-packet</a></li>
+            <li class="list-group-item"><a href="https://github.com/browserify/browserify">browserify</a></li>
+            <li class="list-group-item"><a href="https://github.com/twbs/bootstrap">bootstrap</a></li>
+            <li class="list-group-item"><a href="https://github.com/jquery/jquery">jquery</a></li>
+            <li class="list-group-item"><a href="https://github.com/nodeca/argparse">argparse</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+
+  </div>
+</div>
+
+</body>
+</html>
