@@ -8,8 +8,7 @@
     "bootstrap": "^4.4.1",
     "browserify": "^16.5.0",
     "dns-packet": "^5.2.1",
-    "jquery": "^3.4.1",
-    "popper.js": "^1.16.0"
+    "jquery": "^3.4.1"
   },
   "devDependencies": {},
   "scripts": {
@@ -35,5 +34,7 @@
   "bin": {
     "do-doh": "./bin/doh.js"
   },
-  "publishConfig": { "registry": "https://npm.pkg.github.com/" }
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  }
 }
