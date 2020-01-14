@@ -1,45 +1,77 @@
 # dohjs
 
-Javascript library for DNS over HTTPS requests
+Minimal Javascript library for DNS over HTTPS lookups
+
+# Features
+
+- Command line DNS over HTTPS lookup tool
+- Web interface to run DoH lookups from within your browser
+- Simple DoH lookup function to plugin to your own script
 
 # Installation
 
-### Easy way: just use Github URL
+If you want to just use the command line tool to issue DoH lookups, then run one of the following commands:
 ```bash
-npm install git+ssh://git@github.com:byu-imaal/dohjs.git
+# with ssh
+npm install -g git+ssh://git@github.com:byu-imaal/dohjs.git
+
+# with https
+npm install -g git+https://github.com/byu-imaal/dohjs.git
+```
+*NOTE: The above commands may need to be run as root if you're not using something like nodenv.*
+
+If you want to run the web interface locally or develop dohjs, just clone it, install the dependencies, and get hackin!
+```bash
+git clone https://github.com/byu-imaal/dohjs
+cd dohjs/
+npm install
 ```
 
-### Hard way: use Github's package registry
+# command line tool for DoH lookups
+The script `./bin/doh.js` is a simple command line tool for DoH lookups.
+You run it directly from `./bin/doh.js`. If you install it globally (e.g. `npm install -g git+ssh://git@github.com:byu-imaal/dohjs.git`)
+, it will be available as the command `dohjs`.
 
-This is packaged on Github's package registry, and it's a private package (aka only available to byu-imaal peeps).
-
-To use it as part of your nodejs project, you'll need to do the following:
-
-- Get a personal access token with repo scopes, and all the package scopes
-- Create a file called `.npmrc` in your home directory (e.g. `touch ~/.npmrc`) with the following contents:
+Example:
+```bash
+./bin/doh.js https://dns.google/dns-query --method GET --qname example.com --qtype AAAA
 ```
-//npm.pkg.github.com/:_authToken=<YOUR-AUTH-TOKEN-HERE>
-```
-- Create a file called in your project's directory `.npmrc` with the following contents:
-```
-registry=https://npm.pkg.github.com/byu-imaal
-```
-- Add `@byu-imaal/dohjs` as a dependency to your package.json file:
-```json
-{   
-    "dependencies": {
-        "@byu-imaal/dohjs": "^0.1.0"
-    }
-}
-```
-- Run `npm install`
+It will by default dump the response as JSON. 
 
-Github has some confusing documentation about all this, but if any of this was unclear, here's the link for 
-[their docs](https://help.github.com/en/github/managing-packages-with-github-packages/configuring-npm-for-use-with-github-packages#installing-a-package).
+If you want to fiddle with the output format, feel free to modify bin/doh.js as you see fit (pull requests welcome!).
 
-Like I said, this is definitely the hard way.
+Feel free to pipe to `jq` for prettier output:
+```bash
+./bin/doh.js https://dns.google/dns-query | jq
+```
 
-# Usage
+Here's the usage for it:
+```bash
+uusage: dohjs [-h] [-v] [-m {GET,POST}] [-q QNAME] [-t QTYPE]
+              [--ecs <address>/<source-prefix-len>]
+              url
+ 
+ DNS over HTTPS lookup command line tool
+ 
+ Positional arguments:
+   url                   URL to send the DNS request to
+ 
+ Optional arguments:
+   -h, --help            Show this help message and exit.
+   -v, --version         Show program's version number and exit.
+   -m {GET,POST}, --method {GET,POST}
+                         Request method to use (GET or POST). Default is "POST"
+   -q QNAME, --qname QNAME
+                         Name to query for. Default is "."
+   -t QTYPE, --qtype QTYPE
+                         Query type. Default is "A"
+   --ecs <address>/<source-prefix-len>, --subnet <address>/<source-prefix-len>
+                         EDNS Client Subnet option to include, in the format 
+                         <address>/<source-prefix-len>
+```
+
+# Using the library
+The library basically just provides one function that does a DoH lookup.
 Here's a basic example with minimum options:
 ```javascript
 const doh = require('@byu-imaal/dohjs');
@@ -49,12 +81,12 @@ const options = {
 doh(options);
 ```
 
-Here are all the available options and their default values (***NOTE: these may not all work correctly***)
+Here are all the available options and their default values
 ```javascript
 const defaultOptions = {
   url: null,
   qtype: 'A',
-  qname: 'example.com',
+  qname: '.',
   noRecursion: false,
   dnssecOk: false,
   method: 'POST',
@@ -65,49 +97,17 @@ const defaultOptions = {
 };
 ```
 
-The only required parameter is the url. This may seem unintuitive, but the purpose of this tool is currently focused on DNS resolvers and DoH in general, not on query names.
-
-# command line tool for DoH lookups
-The script `./bin/doh.js` is a simple command line tool for DoH lookups.
-You run it directly from `./bin/doh.js`. If you install it globally (e.g. `npm install -g git+ssh://git@github.com:byu-imaal/dohjs.git`)
-, it will be available as the command `do-doh`.
-
-Example:
-```bash
-./bin/doh.js https://dns.google/dns-query --method GET --qname example.com --qtype AAAA
-```
-It will print out the response as JSON.
-
-Feel free to pipe to `jq` for prettier output:
-```bash
-./bin/doh.js https://dns.google/dns-query | jq
-```
-
-Here's the usage for it:
-```bash
-usage: doh.js [-h] [-v] [-m METHOD] [-q QNAME] [-t QTYPE] url
-
-DNS over HTTPS lookup command line tool
-
-Positional arguments:
-  url                   URL to send the DNS request to
-
-Optional arguments:
-  -h, --help            Show this help message and exit.
-  -v, --version         Show program's version number and exit.
-  -m METHOD, --method METHOD
-                        Request method to use (GET or POST). Default is "POST"
-  -q QNAME, --qname QNAME
-                        Name to query for. Default is "example.com"
-  -t QTYPE, --qtype QTYPE
-                        Query type. Default is "A"
-
-```
+The only required parameter is the url. While this may seem unintuitive, this tool's focus is currently more on 
+resolvers and the DoH protocol in general, and less on query names. That may change in the future.
 
 # Web interface
+The web interface is available at https://imaal.github.io/dohjs.
+If you want to run it locally, make sure to first install the dev dependencies:
+```bash
+npm install --dev
+```
+
 If you prefer a web interface, you can run `npm start`.
 This requires you to have a decent version of python installed.
-It will start up a wimpy python server on port 8000.
-Then open up your browser to http://localhost:8000/public/index.html.
-
-Alternatively, you can (likely temporarily) try it out at https://dns.kimballleavitt.com/dohjs/public/.
+It will start up an http server on port 8080.
+Then open up your browser to http://localhost:8080/docs/ to try it out.
