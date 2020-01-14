@@ -8,6 +8,10 @@ Minimal Javascript library for DNS over HTTPS lookups
 - Web interface to run DoH lookups from within your browser
 - Simple DoH lookup function to plugin to your own script
 
+<br>
+
+**Try sending DoH lookups in your browser - https://imaal.github.io/dohjs/public**
+
 # Installation
 
 If you want to just use the command line tool to issue DoH lookups, then run one of the following commands:
@@ -101,7 +105,7 @@ The only required parameter is the url. While this may seem unintuitive, this to
 resolvers and the DoH protocol in general, and less on query names. That may change in the future.
 
 # Web interface
-The web interface is available at https://imaal.github.io/dohjs.
+The web interface is available at https://imaal.github.io/dohjs/public.
 If you want to run it locally, make sure to first install the dev dependencies:
 ```bash
 npm install --dev
