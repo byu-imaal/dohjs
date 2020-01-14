@@ -10,7 +10,7 @@ Minimal Javascript library for DNS over HTTPS lookups
 
 <br>
 
-**Try sending DoH lookups in your browser - [[https://byu-imaal.github.io/dohjs/public]]**
+**Try sending DoH lookups in your browser - [https://byu-imaal.github.io/dohjs/public](https://byu-imaal.github.io/dohjs/public)**
 
 # Installation
 
