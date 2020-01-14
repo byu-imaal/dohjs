@@ -10,7 +10,7 @@ Minimal Javascript library for DNS over HTTPS lookups
 
 <br>
 
-**Try sending DoH lookups in your browser - https://imaal.github.io/dohjs/public**
+**Try sending DoH lookups in your browser - https://byu-imaal.github.io/dohjs/public**
 
 # Installation
 
@@ -105,7 +105,7 @@ The only required parameter is the url. While this may seem unintuitive, this to
 resolvers and the DoH protocol in general, and less on query names. That may change in the future.
 
 # Web interface
-The web interface is available at https://imaal.github.io/dohjs/public.
+The web interface is available at https://byu-imaal.github.io/dohjs/public.
 If you want to run it locally, make sure to first install the dev dependencies:
 ```bash
 npm install --dev
