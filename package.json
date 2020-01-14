@@ -5,16 +5,18 @@
   "main": "lib/doh.js",
   "dependencies": {
     "argparse": "^1.0.10",
-    "bootstrap": "^4.4.1",
     "browserify": "^16.5.0",
-    "dns-packet": "^5.2.1",
+    "dns-packet": "^5.2.1"
+  },
+  "devDependencies": {
+    "bootstrap": "^4.4.1",
+    "http-server": "^0.12.1",
     "jquery": "^3.4.1"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "./test.sh",
-    "start": "python -m http.server",
-    "build": "cd public && browserify main.js -o bundle.js",
+    "start": "http-server",
+    "build": "cd docs/ && browserify main.js -o bundle.js",
     "prestart": "npm run build"
   },
   "repository": {
@@ -23,18 +25,20 @@
   },
   "keywords": [
     "DNS",
-    "DoH"
+    "DoH",
+    "DNS over HTTPS"
   ],
   "author": "",
-  "license": "MIT",
+  "license": "GPL-3.0+",
   "bugs": {
     "url": "https://github.com/byu-imaal/dohjs/issues"
   },
   "homepage": "https://github.com/byu-imaal/dohjs#readme",
   "bin": {
-    "do-doh": "./bin/doh.js"
+    "dohjs": "./bin/doh.js"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
-  }
+  },
+  "optionalDependencies": {}
 }
