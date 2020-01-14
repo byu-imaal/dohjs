@@ -9,13 +9,11 @@
     "dns-packet": "^5.2.1"
   },
   "devDependencies": {
-    "bootstrap": "^4.4.1",
-    "http-server": "^0.12.1",
-    "jquery": "^3.4.1"
+    "http-server": "^0.12.1"
   },
   "scripts": {
     "test": "./test.sh",
-    "start": "http-server",
+    "start": "http-server public",
     "build": "cd docs/ && browserify main.js -o bundle.js",
     "prestart": "npm run build"
   },

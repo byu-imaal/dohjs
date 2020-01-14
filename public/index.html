@@ -7,10 +7,11 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>DoHJS</title>
 
-  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <!-- jQuery and Bootstrap-->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
-  <script src="../node_modules/jquery/dist/jquery.min.js"></script>
-  <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 </head>
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -27,7 +28,7 @@
           <a class="nav-link active" href="index.html">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="a'bout.html">About</a>
+          <a class="nav-link" href="about.html">About</a>
         </li>
       </ul>
     </div>
@@ -57,8 +58,8 @@
                 </div>
               </div>
               <div class="form-group">
-                <label for="doh-qname"></label><input class="form-control" type="text" id="doh-qname" name="doh-qname" value="" placeholder="example.com">
-                <div class="form-text small">Domain name to query for. Default is example.com</div>
+                <label for="doh-qname"></label><input class="form-control" type="text" id="doh-qname" name="doh-qname" value="" placeholder=".">
+                <div class="form-text small">Domain name to query for. Default is "."</div>
               </div>
               <div class="form-group">
                 <label for="doh-qtype"></label><input class="form-control" type="text" id="doh-qtype" name="doh-qtype" value="" placeholder="A">
