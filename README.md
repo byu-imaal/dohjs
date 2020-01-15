@@ -115,3 +115,6 @@ If you prefer a web interface, you can run `npm start`.
 This requires you to have a decent version of python installed.
 It will start up an http server on port 8080.
 Then open up your browser to http://localhost:8080/docs/ to try it out.
+
+# License
+See [LICENSE](./LICENSE)
