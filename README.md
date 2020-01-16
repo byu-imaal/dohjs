@@ -50,8 +50,8 @@ Feel free to pipe to `jq` for prettier output:
 ```
 
 Here's the usage for it:
-```bash
-uusage: dohjs [-h] [-v] [-m {GET,POST}] [-q QNAME] [-t QTYPE]
+```
+usage: dohjs [-h] [-v] [-m {GET,POST}] [-q QNAME] [-t QTYPE]
               [--ecs <address>/<source-prefix-len>]
               url
  
