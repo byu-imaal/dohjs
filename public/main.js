@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
         doDohBtn.classList.remove('disabled');
     };
 
-    doDohBtn.addEventListener('click', function(e) {
+    const doDoh = function() {
         const dohForm = document.getElementById('try-doh-form');
         dohForm.classList.remove('needs-validation');
         dohForm.classList.add('was-validated');
@@ -53,5 +53,16 @@ document.addEventListener('DOMContentLoaded', function(e) {
         } catch(e) {
             errorFunction(e);
         }
-    })
+    };
+
+    doDohBtn.addEventListener('click', function(e) {
+        doDoh();
+    });
+
+    document.body.addEventListener('keydown', function (e) {
+        if (e.key == 'Enter') {
+            doDoh();
+        }
+    });
+
 });
