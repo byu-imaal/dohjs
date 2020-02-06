@@ -10950,11 +10950,13 @@ function extend() {
 
 },{}],48:[function(require,module,exports){
 const doh = require('../lib/doh');
+const cors_proxy = "https://cors-anywhere.herokuapp.com/";
 
 document.addEventListener('DOMContentLoaded', function(e) {
     const responseElem = document.getElementById('doh-response');
     const $loadingModal = $('#loading-modal');
     const doDohBtn = document.getElementById('do-doh');
+    const corsifyBtn = document.getElementById("corsify");
 
     const errorFunction = (err) => {
         console.error(err);
@@ -11006,14 +11008,16 @@ document.addEventListener('DOMContentLoaded', function(e) {
         }
     };
 
-    doDohBtn.addEventListener('click', function(e) {
-        doDoh();
-    });
-
+    doDohBtn.addEventListener('click', doDoh);
     document.body.addEventListener('keydown', function (e) {
         if (e.key == 'Enter') {
             doDoh();
         }
+    });
+
+    corsifyBtn.addEventListener('click', function(e) {
+        const elem = document.getElementById('doh-url');
+        elem.value = cors_proxy + elem.value;
     });
 
 });
