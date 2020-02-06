@@ -11017,7 +11017,9 @@ document.addEventListener('DOMContentLoaded', function(e) {
 
     corsifyBtn.addEventListener('click', function(e) {
         const elem = document.getElementById('doh-url');
-        elem.value = cors_proxy + elem.value;
+        if (!elem.value.includes(cors_proxy)) {
+            elem.value = cors_proxy + elem.value;
+        }
     });
 
 });
