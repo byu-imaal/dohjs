@@ -34,24 +34,37 @@
     </div>
   </nav>
   <div class="container-fluid">
-    <div class="row mt-4">
-      <div class="col">
-        <div class="card mx-auto" style="width: 36rem;">
+    <div class="row mt-4 align-content-between">
+      <div class="col mx-auto mb-4">
+        <div class="card mx-auto" style="max-width: 36rem;">
           <div class="card-header">
             <h4>Try DoH!</h4>
           </div>
           <div class="card-body">
             <form id="try-doh-form" class="needs-validation">
               <div class="form-group">
-                <label for="doh-url"></label><input class="form-control" type="text" id="doh-url" name="doh-url" value="" placeholder="e.g. https//example.com/dns-query" required>
+                <label for="doh-url"></label><input class="form-control" type="text" id="doh-url" name="doh-url" value="" list="doh-resolvers" placeholder="e.g. https://example.com/dns-query" required>
+                <datalist id="doh-resolvers">
+                  <option value="https://dns.google/dns-query">Google</option>
+                  <option value="https://cloudflare-dns.com/dns-query">Cloudflare</option>
+                  <option value="https://dns.quad9.net/dns-query">Quad9</option>
+                  <option value="https://doh.opendns.com/dns-query">OpenDNS</option>
+                  <option value="https://doh.xfinity.com/dns-query">Comcast</option>
+                </datalist>
                 <div class="form-text small">
-                  Where to send the DNS query. No default (i.e. required)
-                  <br>
-                  <span class="font-weight-bold font-italic">Hint:</span> If you run into CORS issues, prepend "https://cors-anywhere.herokuapp.com/" to the URL.
-                  <br>
-                  <span class="font-weight-bold">Example:</span> https://cors-anywhere.herokuapp.com/https://dns.google/dns-query
-                  <br>
-                  See also: <a href="https://stackoverflow.com/a/43881141/9638991">Stack Overflow answer about CORS issues</a>
+                  Where to send the DNS query
+                  <br><br>
+                  <div class="row align-items-center pr-3">
+                    <p class="col-9 my-auto">
+                      <span class="font-weight-bold font-italic">Hint:</span> If you run into CORS issues, click the button to prepend
+                      <br>"https://cors-anywhere.herokuapp.com/" to the URL.
+                      <br>See also: <a href="https://stackoverflow.com/a/43881141/9638991">Stack Overflow answer about CORS issues</a>
+                    </p>
+                    <button class="btn btn-sm btn-outline-primary col-3 my-auto" type="button" id="corsify">
+                      Use CORS proxy
+                    </button>
+                  </div>
+
                 </div>
                 <div class="invalid-feedback">
                   Looks like you forgot to provide a URL. Oops
@@ -59,25 +72,29 @@
               </div>
               <div class="form-group">
                 <label for="doh-qname"></label><input class="form-control" type="text" id="doh-qname" name="doh-qname" value="" placeholder=".">
-                <div class="form-text small">Domain name to query for. Default is "."</div>
+                <div class="form-text small">Domain name to query for</div>
               </div>
               <div class="form-group">
                 <label for="doh-qtype"></label><input class="form-control" type="text" id="doh-qtype" name="doh-qtype" value="" placeholder="A">
-                <div class="form-text small">Type of query to send. Default is A</div>
+                <div class="form-text small">Type of query to send</div>
               </div>
               <div class="form-group">
-                <label for="doh-method"></label><input class="form-control" type="text" id="doh-method" name="doh-method" value="" placeholder="POST">
-                <div class="form-text small">Method to use in HTTPS request. GET or POST. Default is POST.</div>
+                <label for="doh-method"></label>
+                <select class="custom-select" id="doh-method">
+                  <option value="POST" selected>POST</option>
+                  <option value="GET">GET</option>
+                </select>
+                <div class="form-text small">Method to use in HTTPS request. GET or POST</div>
               </div>
-              <button class="btn btn-outline-primary" type="button" id="do-doh">
+              <button class="btn btn-primary float-right" type="button" id="do-doh">
                 Send DoH query
               </button>
             </form>
           </div>
         </div>
       </div>
-      <div class="col-6 mx-auto">
-        <div class="card" style="width: 36rem;">
+      <div class="col mx-auto mb-4">
+        <div class="card mx-auto" style="max-width: 36rem;">
           <div class="card-body">
             <h4 class="card-title">Response</h4>
             <div class="card-text">
