@@ -10950,11 +10950,13 @@ function extend() {
 
 },{}],48:[function(require,module,exports){
 const doh = require('../lib/doh');
+const cors_proxy = "https://cors-anywhere.herokuapp.com/";
 
 document.addEventListener('DOMContentLoaded', function(e) {
     const responseElem = document.getElementById('doh-response');
     const $loadingModal = $('#loading-modal');
     const doDohBtn = document.getElementById('do-doh');
+    const corsifyBtn = document.getElementById("corsify");
 
     const errorFunction = (err) => {
         console.error(err);
@@ -10975,7 +10977,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
         doDohBtn.classList.remove('disabled');
     };
 
-    doDohBtn.addEventListener('click', function(e) {
+    const doDoh = function() {
         const dohForm = document.getElementById('try-doh-form');
         dohForm.classList.remove('needs-validation');
         dohForm.classList.add('was-validated');
@@ -11004,7 +11006,22 @@ document.addEventListener('DOMContentLoaded', function(e) {
         } catch(e) {
             errorFunction(e);
         }
-    })
+    };
+
+    doDohBtn.addEventListener('click', doDoh);
+    document.body.addEventListener('keydown', function (e) {
+        if (e.key == 'Enter') {
+            doDoh();
+        }
+    });
+
+    corsifyBtn.addEventListener('click', function(e) {
+        const elem = document.getElementById('doh-url');
+        if (!elem.value.includes(cors_proxy)) {
+            elem.value = cors_proxy + elem.value;
+        }
+    });
+
 });
 
 },{"../lib/doh":1}]},{},[48]);
