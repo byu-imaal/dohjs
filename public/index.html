@@ -34,8 +34,8 @@
     </div>
   </nav>
   <div class="container-fluid">
-    <div class="row mt-4">
-      <div class="col">
+    <div class="row mt-4 align-content-between">
+      <div class="col mx-auto mb-4">
         <div class="card mx-auto" style="width: 36rem;">
           <div class="card-header">
             <h4>Try DoH!</h4>
@@ -55,13 +55,13 @@
                   Where to send the DNS query
                   <br><br>
                   <div class="row align-items-center pr-3">
-                    <p class="col-10 my-auto">
+                    <p class="col-9 my-auto">
                       <span class="font-weight-bold font-italic">Hint:</span> If you run into CORS issues, click the button to prepend
                       <br>"https://cors-anywhere.herokuapp.com/" to the URL.
                       <br>See also: <a href="https://stackoverflow.com/a/43881141/9638991">Stack Overflow answer about CORS issues</a>
                     </p>
-                    <button class="btn btn-outline-primary col-2 my-auto" type="button" id="corsify">
-                      CORS-ify
+                    <button class="btn btn-sm btn-outline-primary col-3 my-auto" type="button" id="corsify">
+                      Use CORS proxy
                     </button>
                   </div>
 
@@ -93,8 +93,8 @@
           </div>
         </div>
       </div>
-      <div class="col-6 mx-auto">
-        <div class="card" style="width: 36rem;">
+      <div class="col mx-auto mb-4">
+        <div class="card mx-auto" style="width: 36rem;">
           <div class="card-body">
             <h4 class="card-title">Response</h4>
             <div class="card-text">
