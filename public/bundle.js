@@ -10957,6 +10957,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
     const $loadingModal = $('#loading-modal');
     const doDohBtn = document.getElementById('do-doh');
     const corsifyBtn = document.getElementById("corsify");
+    const urlInputElem = document.getElementById('doh-url');
 
     const errorFunction = (err) => {
         console.error(err);
@@ -10983,7 +10984,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
         dohForm.classList.add('was-validated');
 
         responseElem.childNodes.forEach(node => node.remove());
-        const urlInputElem = document.getElementById('doh-url');
+
         const url = urlInputElem.value;
         if (!url) {
             return;
@@ -11008,7 +11009,24 @@ document.addEventListener('DOMContentLoaded', function(e) {
         }
     };
 
+    // just toggles button state
+    const toggleCORSButton = function() {
+        console.log(urlInputElem.value);
+        if (urlInputElem.value.includes(cors_proxy)) {
+            corsifyBtn.classList.remove("btn-outline-primary");
+            corsifyBtn.classList.add('btn-primary');
+            corsifyBtn.innerText = "Remove CORS Proxy";
+        }
+        else {
+            corsifyBtn.classList.remove('btn-primary');
+            corsifyBtn.classList.add("btn-outline-primary");
+            corsifyBtn.innerText = "Use CORS Proxy";
+        }
+    };
+
     doDohBtn.addEventListener('click', doDoh);
+    urlInputElem.addEventListener('input', toggleCORSButton); // user may remove proxy in form
+
     document.body.addEventListener('keydown', function (e) {
         if (e.key == 'Enter') {
             doDoh();
@@ -11016,11 +11034,15 @@ document.addEventListener('DOMContentLoaded', function(e) {
     });
 
     corsifyBtn.addEventListener('click', function(e) {
-        const elem = document.getElementById('doh-url');
-        if (!elem.value.includes(cors_proxy)) {
-            elem.value = cors_proxy + elem.value;
+        if (!urlInputElem.value.includes(cors_proxy)) {
+            urlInputElem.value = cors_proxy + urlInputElem.value;
         }
+        else {
+            urlInputElem.value = urlInputElem.value.substr(cors_proxy.length);
+        }
+        toggleCORSButton();
     });
+
 
 });
 
