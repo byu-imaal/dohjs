@@ -1,4 +1,4 @@
-# dohjs
+# DoHjs
 
 Minimal Javascript library for DNS over HTTPS lookups
 
