@@ -1,4 +1,6 @@
-![DoH.js](public/dohjs.png)
+<p align="center">
+  <img src="public/dohjs.png" alt="DoH.js" width="50%"/>
+</p>
 
 Minimal Javascript library for DNS over HTTPS lookups
 
