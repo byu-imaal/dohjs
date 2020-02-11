@@ -1,6 +1,6 @@
 <h3 align="center">
-  <img src="public/dohjs.png" alt="DoH.js" width="50%"/>
-  <br>
+  <img src="public/dohjs.png" alt="DoH.js" width="70%"/>
+  <br><br>
   Minimal Javascript library for DNS over HTTPS lookups
 </h3>
 
