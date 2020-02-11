@@ -1,8 +1,10 @@
-<p align="center">
+<h3 align="center">
   <img src="public/dohjs.png" alt="DoH.js" width="50%"/>
-</p>
+  <br>
+  Minimal Javascript library for DNS over HTTPS lookups
+</h3>
 
-Minimal Javascript library for DNS over HTTPS lookups
+---
 
 # Features
 
