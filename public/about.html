@@ -5,7 +5,9 @@
   <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>About DoHJS</title>
+  <title>About DoH.js</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+
 
   <!-- jQuery and Bootstrap-->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -15,28 +17,31 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">dohjs</a>
+  <a class="navbar-brand py-0" href="#">
+    <img src="dohjs.png" class="img-fluid" alt="DoH.js" style="height: 40px;"/>
+  </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a  class="nav-link" href="https://github.com/byu-imaal/dohjs">Github</a>
-      </li>
-      <li class="nav-item">
         <a class="nav-link" href="index.html">Home</a>
       </li>
       <li class="nav-item">
         <a class="nav-link active" href="about.html">About</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="https://github.com/byu-imaal/dohjs">Github</a>
+      </li>
     </ul>
+
   </div>
 </nav>
 <div class="container-fluid">
-  <div class="row mt-4">
-    <div class="col">
-      <div class="card" style="width: 36rem">
+  <div class="row mt-4 align-content-between">
+    <div class="col-xs-12 col-md-4 mb-4">
+      <div class="card mx-auto" style="max-width: 36rem">
         <div class="card-header">
           <h4>Why DoH? From the RFC authors.</h4>
         </div>
@@ -57,15 +62,15 @@
         </div>
       </div>
     </div>
-    <div class="col">
-      <div class="card">
+    <div class="col-xs-12 col-md-4 mb-4">
+      <div class="card mx-auto" style="max-width: 36rem;">
         <div class="card-body">
           This site features a client-side browser implementation of DNS over HTTPS.
         </div>
       </div>
     </div>
-    <div class="col">
-      <div class="card mx-auto  " style="width: 30rem;">
+    <div class="col-xs-12 col-md-4 mb-4">
+      <div class="card mx-auto" style="max-width: 36rem;">
         <div class="card-body">
           <h4 class="card-title">Credits</h4>
           A big <h1 class="text-success">THANKS</h1> to all the maintainers and contributors of the following JavaScript packages:
