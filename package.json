@@ -1,8 +1,8 @@
 {
   "name": "dohjs",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "DNS over HTTPS Javascript Client",
-  "main": "lib/doh.js",
+  "main": "lib/index.js",
   "dependencies": {
     "argparse": "^1.0.10",
     "browserify": "^16.5.0",
@@ -14,10 +14,10 @@
   },
   "scripts": {
     "test": "./test.sh",
-    "start": "http-server public",
-    "build": "cd public/ && browserify main.js -o bundle.js",
+    "start": "http-server .",
     "prestart": "npm run build",
-    "prepare": "browserify lib/doh.js -o dist/doh.js && npx terser dist/doh.js --compress --mangle --output=dist/doh.min.js"
+    "build": "browserify lib/index.js --standalone doh -o dist/doh.js",
+    "prepare": "npm run build && npx terser dist/doh.js --compress --mangle --output=dist/doh.min.js"
   },
   "repository": {
     "type": "git",
@@ -42,11 +42,10 @@
   },
   "optionalDependencies": {},
   "files": [
-    "dist/doh.js",
-    "dist/doh.min.js",
-    "public/*",
-    "lib/*",
-    "bin/*",
+    "dist/",
+    "public/",
+    "lib/",
+    "bin/",
     "test.sh"
   ]
 }
