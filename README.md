@@ -16,14 +16,11 @@ According to RFC 8484, one of the use cases of the DNS over HTTPS protocol is
 
 > allowing web applications to access DNS information via existing browser APIs in a safe way consistent with Cross Origin Resource Sharing (CORS)
 
-
 # Features
 
 - (small) DoH library for DNS lookups **IN THE BROWSER**
 - Command line DNS over HTTPS lookup tool
 - [Web interface](https://byu-imaal.github.io/dohjs/public)
-
-<br>
 
 # Installation
 
