@@ -1,5 +1,5 @@
 {
-  "name": "@byu-imaal/dohjs",
+  "name": "dohjs",
   "version": "0.1.0",
   "description": "DNS over HTTPS Javascript Client",
   "main": "lib/doh.js",
