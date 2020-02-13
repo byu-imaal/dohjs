@@ -1,6 +1,6 @@
 {
   "name": "dohjs",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "DNS over HTTPS Javascript Client",
   "main": "lib/doh.js",
   "dependencies": {
@@ -40,5 +40,13 @@
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
-  "optionalDependencies": {}
+  "optionalDependencies": {},
+  "files": [
+    "dist/doh.js",
+    "dist/doh.min.js",
+    "public/*",
+    "lib/*",
+    "bin/*",
+    "test.sh"
+  ]
 }
