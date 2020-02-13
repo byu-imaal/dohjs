@@ -129,7 +129,7 @@ usage: dohjs [-h] [-v] [-m {GET,POST}] [-q QNAME] [-t QTYPE]
 
 # Contributing
 
-To do
+Pull requests are welcome!
 
 # Tests
 
