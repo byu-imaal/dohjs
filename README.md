@@ -5,7 +5,7 @@
 </h3>
 
 [![npm version](https://badge.fury.io/js/dohjs.svg)](https://badge.fury.io/js/dohjs)
-
+![Node.js CI](https://github.com/byu-imaal/dohjs/workflows/build/badge.svg)
 ---
 
 **Try sending DoH lookups from your browser - [https://byu-imaal.github.io/dohjs/public](https://byu-imaal.github.io/dohjs/public)**
