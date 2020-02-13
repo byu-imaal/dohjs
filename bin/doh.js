@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 'use strict';
 
-const doh = require('../lib/doh.js');
+const doh = require('../lib');
 const ArgumentParser = require('argparse').ArgumentParser;
 
 let parser = new ArgumentParser({

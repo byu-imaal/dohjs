@@ -1,4 +1,3 @@
-const doh = require('../lib/doh');
 const cors_proxy = "https://cors-anywhere.herokuapp.com/";
 
 document.addEventListener('DOMContentLoaded', function(e) {
@@ -78,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
     urlInputElem.addEventListener('input', toggleCORSButton); // user may remove proxy in form
 
     document.body.addEventListener('keydown', function (e) {
-        if (e.key == 'Enter') {
+        if (e.key === 'Enter') {
             doDoh();
         }
     });
