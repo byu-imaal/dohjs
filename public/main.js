@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
         responseElem.innerHTML = `
 <div class="text-danger">
     An error occurred with your DNS request
-    (hint: check the console for more details).
+    (check the console for more details).
     Here is the error:
   <p class="font-weight-bold">${err}</p>
 </div>`;
@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
     const successFunction = (response) => {
         responseElem.innerHTML = `<pre>${JSON.stringify(response, null, 4)}</pre>`;
         $loadingModal.modal('hide');
-        doDohBtn.classList.remove('disabled');
+        doDohBtn.disabled = false;
     };
 
     const doDoh = function() {
@@ -45,16 +45,12 @@ document.addEventListener('DOMContentLoaded', function(e) {
             method: method,
             qname: qname,
             qtype: qtype,
-            success: successFunction,
-            error: errorFunction
         };
         $loadingModal.modal('show');
-        document.getElementById('do-doh').classList.add('disabled');
-        try {
-            doh(options);
-        } catch(e) {
-            errorFunction(e);
-        }
+        document.getElementById('do-doh').disabled = true;
+        doh.lookup(options)
+          .then(successFunction)
+          .catch(errorFunction);
     };
 
     // just toggles button state
@@ -91,6 +87,4 @@ document.addEventListener('DOMContentLoaded', function(e) {
         }
         toggleCORSButton();
     });
-
-
 });
