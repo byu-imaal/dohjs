@@ -53,4 +53,4 @@ if (args._subnet) {
   args.ecsAddress = split[0];
   args.sourcePrefixLength = split[1];
 }
-doh(args);
+doh.lookup(args);
