@@ -1,14 +1,15 @@
 <h3 align="center">
-  <img src="public/dohjs.png" alt="DoHjs" width="70%"/>
+  <img src="./public/dohjs.png" alt="DoHjs" width="70%"/>
   <br><br>
   Minimal Javascript library for DNS over HTTPS lookups <b>IN YOUR BROWSER</b>
 </h3>
 
 [![npm version](https://badge.fury.io/js/dohjs.svg)](https://badge.fury.io/js/dohjs)
-![Node.js CI](https://github.com/byu-imaal/dohjs/workflows/build/badge.svg)
+![build](https://github.com/byu-imaal/dohjs/workflows/build/badge.svg)
+
 ---
 
-**Try sending DoH lookups from your browser - [https://byu-imaal.github.io/dohjs/public](https://byu-imaal.github.io/dohjs/public)**
+**Try sending DoH lookups from your browser - [https://dohjs.org/public](https://dohjs.org/public)**
 
 # Why dohjs
 
@@ -18,9 +19,9 @@ According to RFC 8484, one of the use cases of the DNS over HTTPS protocol is
 
 # Features
 
-- (small) DoH library for DNS lookups **IN THE BROWSER**
+- DoH library for DNS lookups **IN THE BROWSER**
 - Command line DNS over HTTPS lookup tool
-- [Web interface](https://byu-imaal.github.io/dohjs/public)
+- [Web interface](https://dohjs.org/public)
 
 # Installation
 
@@ -35,11 +36,11 @@ If you want to just use the command line tool `dohjs` to issue DoH lookups, inst
 npm install -g dohjs
 ```
 
-*NOTE: The above command may need to be run as root if your nodejs installation is system-wide.*
+*NOTE: The above command may need to be run as root ([how to fix this](https://docs.npmjs.com/resolving-eacces-permissions-errors-when-installing-packages-globally))*
 
 # Usage
 
-***NOTE: This project is a WIP and likely to change frequently and without notice***
+## Importing dohjs
 
 If you're just using plain ol' vanilla JS in the browser, include doh.js (or doh.min.js) from the CDN or your local installation in your html file.
 Make sure you put it before your other `<script>` tags.
@@ -55,34 +56,6 @@ If you're using nodejs:
 ```javascript
 const doh = require('dohjs');
 ```
-
-DoHjs currently just provides one function that does a DoH lookup.
-Here's a basic example with minimum options:
-```javascript
-const options = {
-    url: 'https://dns.google/dns-query',
-};
-doh(options);
-```
-
-Here are all the available options and their default values
-```javascript
-const defaultOptions = {
-  url: null,
-  qtype: 'A',
-  qname: '.',
-  noRecursion: false,
-  dnssecOk: false,
-  method: 'POST',
-  ecsAddress: '0.0.0.0',
-  ecsSourcePrefixLength: 0,
-  success: response => console.log(JSON.stringify(response)),
-  error: err => console.error(err)
-};
-```
-
-The only required parameter is the url, which is where we'll be sending the DNS query to.
-While some may disagree with this, dohjs will not choose a default DoH provider for its users.
 
 # command line tool: dohjs
 The script `./bin/doh.js` is a simple command line tool for DoH lookups.
@@ -129,11 +102,17 @@ usage: dohjs [-h] [-v] [-m {GET,POST}] [-q QNAME] [-t QTYPE]
 
 # Contributing
 
-Pull requests are welcome!
+We welcome your contributions
 
 # Tests
 
-To do
+To run tests for the command line tool, do
+```bash
+npm test
+```
+
+We are currently working on tests for other parts of the project.
+Feel free to submit a pull request
 
 # Web interface
 The web interface is available at https://byu-imaal.github.io/dohjs/public.
