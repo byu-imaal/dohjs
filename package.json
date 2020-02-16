@@ -9,6 +9,8 @@
     "dns-packet": "^5.2.1"
   },
   "devDependencies": {
+    "jest": "^25.1.0",
+    "jsdoc": "^3.6.3",
     "terser": "^4.6.3"
   },
   "scripts": {
@@ -16,7 +18,8 @@
     "start": "npx live-server --open=/public/index.html .",
     "prestart": "npm run build",
     "build": "browserify lib/index.js --standalone doh -o dist/doh.js",
-    "prepare": "npm run build && npx terser dist/doh.js --compress --mangle --output=dist/doh.min.js"
+    "prepare": "npm run build && npx terser dist/doh.js --compress --mangle --output=dist/doh.min.js",
+    "docs": "npx jsdoc -R README.md lib/index.js --destination docs/docs/"
   },
   "repository": {
     "type": "git",
