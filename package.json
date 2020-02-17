@@ -1,6 +1,6 @@
 {
   "name": "dohjs",
-  "version": "0.1.4",
+  "version": "0.1.6",
   "description": "Do DNS over HTTPS lookups from your browser",
   "main": "lib/index.js",
   "dependencies": {
@@ -9,15 +9,17 @@
     "dns-packet": "^5.2.1"
   },
   "devDependencies": {
-    "http-server": "^0.12.1",
+    "jest": "^25.1.0",
+    "jsdoc": "^3.6.3",
     "terser": "^4.6.3"
   },
   "scripts": {
     "test": "./test.sh",
-    "start": "http-server .",
+    "start": "npx live-server --open=/public/index.html .",
     "prestart": "npm run build",
     "build": "browserify lib/index.js --standalone doh -o dist/doh.js",
-    "prepare": "npm run build && npx terser dist/doh.js --compress --mangle --output=dist/doh.min.js"
+    "prepare": "npm run build && npx terser dist/doh.js --compress --mangle --output=dist/doh.min.js",
+    "docs": "npx jsdoc -R README.md lib/index.js --destination docs/"
   },
   "repository": {
     "type": "git",
