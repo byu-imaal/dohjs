@@ -10,11 +10,11 @@ document.addEventListener('DOMContentLoaded', function(e) {
     const errorFunction = (err) => {
         console.error(err);
         $loadingModal.modal('hide');
-        doDohBtn.classList.remove('disabled');
+        doDohBtn.disabled = false;
         responseElem.innerHTML = `
 <div class="text-danger">
     An error occurred with your DNS request
-    (hint: check the console for more details).
+    (check the console for more details).
     Here is the error:
   <p class="font-weight-bold">${err}</p>
 </div>`;
@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
     const successFunction = (response) => {
         responseElem.innerHTML = `<pre>${JSON.stringify(response, null, 4)}</pre>`;
         $loadingModal.modal('hide');
-        doDohBtn.classList.remove('disabled');
+        doDohBtn.disabled = false;
     };
 
     const doDoh = function() {
@@ -40,21 +40,12 @@ document.addEventListener('DOMContentLoaded', function(e) {
         const method = document.getElementById('doh-method').value;
         const qname = document.getElementById('doh-qname').value;
         const qtype = document.getElementById('doh-qtype').value;
-        const options = {
-            url: url,
-            method: method,
-            qname: qname,
-            qtype: qtype,
-            success: successFunction,
-            error: errorFunction
-        };
         $loadingModal.modal('show');
-        document.getElementById('do-doh').classList.add('disabled');
-        try {
-            doh(options);
-        } catch(e) {
-            errorFunction(e);
-        }
+        document.getElementById('do-doh').disabled = true;
+        const resolver = new doh.DohResolver(url);
+        resolver.query(qname, qtype, method)
+          .then(successFunction)
+          .catch(errorFunction);
     };
 
     // just toggles button state
@@ -91,6 +82,4 @@ document.addEventListener('DOMContentLoaded', function(e) {
         }
         toggleCORSButton();
     });
-
-
 });
