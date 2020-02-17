@@ -1,7 +1,76 @@
 #!/usr/bin/env node
 'use strict';
 
-const doh = require('../lib');
+const {makeQuery, sendDohMsg} = require('..');
+const dnsPacket = require('dns-packet');
+
+/**
+ * Default DoH lookup options
+ *
+ * @type {{dnssecOk: boolean, method: string, qtype: string, qname: string, ecsAddress: string, noRecursion: boolean, ecsSourcePrefixLength: number, url: null}}
+ */
+const defaultDohLookupOptions = {
+  url: null,
+  qtype: 'A',
+  qname: '.',
+  noRecursion: false,
+  dnssecOk: false,
+  method: 'POST',
+  ecsAddress: '0.0.0.0',
+  ecsSourcePrefixLength: 0,
+};
+
+/**
+ * Perform a DNS over HTTPS lookup given options.
+ *
+ * See `defaultDohLookupOptions` above for list of options
+ * and their defaults
+ *
+ * @param options {object} DNS lookup options
+ * @returns {Promise<dnsPacket>}
+ */
+function dohLookup(options) {
+  var url = options.url || defaultDohLookupOptions.url;
+  if (!url) {
+    throw new Error('Must provide a URL to send DoH lookup to');
+  }
+  const flags = options.noRecursion ? 0 : dnsPacket.RECURSION_DESIRED;
+  const type = options.qtype || defaultDohLookupOptions.qtype;
+  const name = options.qname || defaultDohLookupOptions.qname;
+  const method = options.method || defaultDohLookupOptions.method;
+  let dnsMessage = makeQuery(name, type);
+  dnsMessage.flags = flags;
+  if (options.dnssecOk) {
+    dnsMessage.additionals = [{
+      type: 'OPT',
+      name: '.',
+      udpPayloadSize: 4096,
+      flags: dnsPacket.DNSSEC_OK,
+      options: []
+    }]
+  }
+  if (options.ecsAddress) {
+    const family = options.ecsAddress.indexOf(':') !== -1 ? 2 : 1;
+    const sourcePrefixLength = options.sourcePrefixLength || defaultDohLookupOptions.sourcePrefixLength;
+    if (!dnsMessage.additionals || !dnsMessage.additionals.length) {
+      dnsMessage.additionals = [{
+        type: 'OPT',
+        name: '.',
+        udpPayloadSize: 4096,
+        options: []
+      }]
+    }
+    dnsMessage.additionals[0].options.push({
+      code: 8,
+      family: family,
+      sourcePrefixLength: sourcePrefixLength,
+      scopePrefixLength: 0,
+      ip: options.ecsAddress
+    })
+  }
+  return sendDohMsg(dnsMessage, url, method);
+}
+
 const ArgumentParser = require('argparse').ArgumentParser;
 
 let parser = new ArgumentParser({
@@ -53,4 +122,12 @@ if (args._subnet) {
   args.ecsAddress = split[0];
   args.sourcePrefixLength = split[1];
 }
-doh.lookup(args);
+
+dohLookup(args)
+  .then(response => {
+    console.log(JSON.stringify(response))
+  })
+  .catch(reason => {
+    console.error(reason);
+    process.exit(1);
+  });

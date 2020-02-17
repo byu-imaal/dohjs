@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
     const errorFunction = (err) => {
         console.error(err);
         $loadingModal.modal('hide');
-        doDohBtn.classList.remove('disabled');
+        doDohBtn.disabled = false;
         responseElem.innerHTML = `
 <div class="text-danger">
     An error occurred with your DNS request
@@ -40,15 +40,10 @@ document.addEventListener('DOMContentLoaded', function(e) {
         const method = document.getElementById('doh-method').value;
         const qname = document.getElementById('doh-qname').value;
         const qtype = document.getElementById('doh-qtype').value;
-        const options = {
-            url: url,
-            method: method,
-            qname: qname,
-            qtype: qtype,
-        };
         $loadingModal.modal('show');
         document.getElementById('do-doh').disabled = true;
-        doh.lookup(options)
+        const resolver = new doh.DohResolver(url);
+        resolver.query(qname, qtype, method)
           .then(successFunction)
           .catch(errorFunction);
     };
