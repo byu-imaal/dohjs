@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-# exit on any test failure
-set -e
-
 # run integrated tests
 jest
 
