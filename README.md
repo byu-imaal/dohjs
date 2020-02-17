@@ -1,7 +1,7 @@
 <h3 align="center">
   <img src="./public/dohjs.png" alt="DoHjs" width="70%"/>
   <br><br>
-  Minimal Javascript library for DNS over HTTPS lookups <b>IN YOUR BROWSER</b>
+  Javascript library for DNS over HTTPS lookups <b>IN YOUR BROWSER</b>
 </h3>
 
 [![npm version](https://badge.fury.io/js/dohjs.svg)](https://badge.fury.io/js/dohjs)
@@ -12,6 +12,9 @@
 **Try sending DoH lookups from your browser - [https://dohjs.org/public](https://dohjs.org/public)**
 
 # Why dohjs
+
+There have been a lot of APIs show up over the years to do DNS lookups from JavaScript.
+Now that DNS over HTTPS is an Internet standard, we thought it might be useful to provide a simple library to make things easier.
 
 According to RFC 8484, one of the use cases of the DNS over HTTPS protocol is
 
@@ -38,11 +41,15 @@ npm install -g dohjs
 
 *NOTE: The above command may need to be run as root ([how to fix this](https://docs.npmjs.com/resolving-eacces-permissions-errors-when-installing-packages-globally))*
 
+# Docs
+
+To build the documentation locally, run `npm run docs`. Then you can serve up your docs/ directory.
+
 # Usage
 
 ## Importing dohjs
 
-If you're just using plain ol' vanilla JS in the browser, include doh.js (or doh.min.js) from the CDN or your local installation in your html file.
+If you're using JS in the browser, include doh.js (or doh.min.js) from the CDN or your local installation in your html file.
 Make sure you put it before your other `<script>` tags.
 
 ```html
@@ -52,7 +59,8 @@ Make sure you put it before your other `<script>` tags.
 <script src="node_modules/dohjs/dist/doh.min.js"></script>
 ```
 
-If you're using nodejs:
+You can also use the nodejs `require()` function to import doh.
+Note that for this to work in the browser, you'll likely have to use something like `browserify`.
 ```javascript
 const doh = require('dohjs');
 ```
@@ -102,27 +110,22 @@ usage: dohjs [-h] [-v] [-m {GET,POST}] [-q QNAME] [-t QTYPE]
 
 # Contributing
 
-We welcome your contributions
+Pull requests welcome!
 
 # Tests
 
-To run tests for the command line tool, do
+To run tests, clone the repo, and run:
 ```bash
 npm test
 ```
 
-We are currently working on tests for other parts of the project.
-Feel free to submit a pull request
-
 # Web interface
-The web interface is available at https://byu-imaal.github.io/dohjs/public.
+The web interface is available at https://dohjs.org/public.
 If you want to run it locally, make sure you have the dev dependencies installed:
 ```bash
 npm install --dev
 ```
-
-If you prefer a web interface, you can run `npm start`.
-Then open up your browser to http://localhost:8080/public to try it out.
+Then run `npm start`.
 
 # License
-See [LICENSE](./LICENSE)
+GPLv3 (see [LICENSE](./LICENSE))

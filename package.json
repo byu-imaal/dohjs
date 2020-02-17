@@ -19,7 +19,7 @@
     "prestart": "npm run build",
     "build": "browserify lib/index.js --standalone doh -o dist/doh.js",
     "prepare": "npm run build && npx terser dist/doh.js --compress --mangle --output=dist/doh.min.js",
-    "docs": "npx jsdoc -R README.md lib/index.js --destination docs/docs/"
+    "docs": "npx jsdoc -R README.md lib/index.js --destination docs/"
   },
   "repository": {
     "type": "git",
