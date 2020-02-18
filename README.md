@@ -9,26 +9,24 @@
 
 ---
 
-**Try sending DoH lookups from your browser - [https://bdohjs.org](https://dohjs.org)**
+**Try out dohjs from your browser - [https://dohjs.org](https://dohjs.org)**
 
 # Why dohjs
 
-There have been a lot of APIs show up over the years to do DNS lookups from JavaScript.
-Now that DNS over HTTPS is an Internet standard, we thought it might be useful to provide a simple library to make things easier.
-
-According to RFC 8484, one of the use cases of the DNS over HTTPS protocol is
+The purpose of dohjs is described well in the Internet standard document for DNS over HTTPS ([RFC 8484](https://tools.ietf.org/html/rfc8484)):
 
 > allowing web applications to access DNS information via existing browser APIs in a safe way consistent with Cross Origin Resource Sharing (CORS)
 
-# Features
+### Features
 
-- DoH library for DNS lookups **IN THE BROWSER**
+- Fully compliant DNS over HTTPS client implementation
+- Works great in your browser
+- [Web interface](https://dohjs.org) to try dohjs
 - Command line DNS over HTTPS lookup tool
-- [Web interface](https://dohjs.org)
 
 # Installation
 
-If you're not using npm, you can skip this part.
+If you're not using npm, you can skip to [quickstart](#quickstart).
 
 ```bash
 npm install dohjs
@@ -41,76 +39,37 @@ npm install -g dohjs
 
 *NOTE: The above command may need to be run as root ([how to fix this](https://docs.npmjs.com/resolving-eacces-permissions-errors-when-installing-packages-globally))*
 
-# Docs
+# Quickstart
 
-To build the documentation locally, run `npm run docs`. Then you can serve up your docs/ directory.
+To get started hacking with dohjs, checkout our [examples](examples).
 
-# Usage
-
-## Importing dohjs
-
-If you're using JS in the browser, include doh.js (or doh.min.js) from the CDN or your local installation in your html file.
+Be sure to include doh.js in your HTML file. You can include it from [jsdelivr](https://www.jsdelivr.com/) or your local installation.
 Make sure you put it before your other `<script>` tags.
 
 ```html
 <!-- from CDN -->
 <script src="https://cdn.jsdelivr.net/npm/dohjs@0.1.3/dist/doh.min.js"></script>
 <!-- from local installation -->
-<script src="node_modules/dohjs/dist/doh.min.js"></script>
+<script src="/path/to/node_modules/dohjs/dist/doh.min.js"></script>
 ```
 
-You can also use the nodejs `require()` function to import doh.
-Note that for this to work in the browser, you'll likely have to use something like `browserify`.
+If your project is mostly nodejs-style (e.g. you're using [browserify](https://github.com/browserify/browserify)),
+you can `require()` dohjs like so:
 ```javascript
 const doh = require('dohjs');
 ```
 
-# command line tool: dohjs
-The script `./bin/doh.js` is a simple command line tool for DoH lookups.
-You run it directly from `./bin/doh.js`. If you install it globally (e.g. `npm install -g dohjs`)
-, it will be available as the command `dohjs`.
+# Docs
 
-Example:
-```bash
-./bin/doh.js https://dns.google/dns-query --method GET --qname example.com --qtype AAAA
-```
-It will by default dump the response as JSON.
+API documentation for dohjs can be found in [docs/README.md](docs/README.md).
 
-If you want to fiddle with the output format, feel free to modify bin/doh.js as you see fit (pull requests welcome!).
-
-Feel free to pipe to `jq` for prettier output:
-```bash
-./bin/doh.js https://dns.google/dns-query | jq
-```
-
-Here's the usage for it:
-```
-usage: dohjs [-h] [-v] [-m {GET,POST}] [-q QNAME] [-t QTYPE]
-              [--ecs <address>/<source-prefix-len>]
-              url
- 
- DNS over HTTPS lookup command line tool
- 
- Positional arguments:
-   url                   URL to send the DNS request to
- 
- Optional arguments:
-   -h, --help            Show this help message and exit.
-   -v, --version         Show program's version number and exit.
-   -m {GET,POST}, --method {GET,POST}
-                         Request method to use (GET or POST). Default is "POST"
-   -q QNAME, --qname QNAME
-                         Name to query for. Default is "."
-   -t QTYPE, --qtype QTYPE
-                         Query type. Default is "A"
-   --ecs <address>/<source-prefix-len>, --subnet <address>/<source-prefix-len>
-                         EDNS Client Subnet option to include, in the format 
-                         <address>/<source-prefix-len>
-```
+Documentation for the dohjs CLI is in [docs/cli.md](docs/cli.md).
 
 # Contributing
 
-Pull requests welcome!
+We love contributors!
+
+If you find a bug in dohjs, or you have a feature you'd like added, please open an issue and/or submit a pull request.
 
 # Tests
 
@@ -120,8 +79,17 @@ npm test
 ```
 
 # Web interface
-The web interface is available at https://dohjs.org.
-See the `ph-pages` branch for code.
+The web interface is available at [https://dohjs.org](https://dohjs.org).
+
+See the `gh-pages` branch for code.
+
+# CORS issues
+
+You'll probably get some CORS errors when sending DoH queries. A few ways to get around those are:
+
+- Use a CORS proxy. At [dohjs.org](https://dohjs.org), there is an option to use a CORS proxy if you want to try it out.
+- Disable CORS when you launch your browser sometimes works (e.g. `google-chome --user-data-dir=/tmp/asdf --disable-web-security`)
+- Run your own DoH server that sets the Access-Control-Allow-Origin header appropriately (e.g. `Access-Control-Allow-Origin: *` to allow everyone)
 
 # License
 GPLv3 (see [LICENSE](./LICENSE))
