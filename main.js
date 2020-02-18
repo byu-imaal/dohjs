@@ -37,9 +37,9 @@ document.addEventListener('DOMContentLoaded', function(e) {
         if (!url) {
             return;
         }
-        const method = document.getElementById('doh-method').value;
-        const qname = document.getElementById('doh-qname').value;
-        const qtype = document.getElementById('doh-qtype').value;
+        const method = document.getElementById('doh-method').value || 'POST';
+        const qname = document.getElementById('doh-qname').value || '.';
+        const qtype = document.getElementById('doh-qtype').value || 'A';
         $loadingModal.modal('show');
         document.getElementById('do-doh').disabled = true;
         const resolver = new doh.DohResolver(url);
