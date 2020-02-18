@@ -121,7 +121,8 @@ npm test
 
 # Web interface
 The web interface is available at https://dohjs.org.
-See the `ph-pages` branch for code.
+
+See the `gh-pages` branch for code.
 
 # License
 GPLv3 (see [LICENSE](./LICENSE))
