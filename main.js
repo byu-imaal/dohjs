@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
         $loadingModal.modal('hide');
         doDohBtn.disabled = false;
         responseElem.innerHTML = `
-<div class="text-danger">
+<div class="text-danger m-3">
     An error occurred with your DNS request
     (check the console for more details).
     Here is the error:
@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
     };
 
     const successFunction = (response) => {
-        responseElem.innerHTML = `<pre>${JSON.stringify(response, null, 4)}</pre>`;
+        atest(response);
         $loadingModal.modal('hide');
         doDohBtn.disabled = false;
     };
@@ -51,9 +51,8 @@ document.addEventListener('DOMContentLoaded', function(e) {
     // just toggles button state
     const toggleCORSButton = function() {
         //TODO remove
-        atest();
+        atest(data);
 
-        console.log(urlInputElem.value);
         if (urlInputElem.value.includes(cors_proxy)) {
             corsifyBtn.classList.remove("btn-outline-primary");
             corsifyBtn.classList.add('btn-primary');
