@@ -50,6 +50,8 @@ document.addEventListener('DOMContentLoaded', function(e) {
 
     // just toggles button state
     const toggleCORSButton = function() {
+        //TODO remove
+        atest();
 
         console.log(urlInputElem.value);
         if (urlInputElem.value.includes(cors_proxy)) {
