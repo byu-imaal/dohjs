@@ -29,7 +29,7 @@ Allowed method are &quot;GET&quot; and &quot;POST&quot;</p>
 <dt><a href="#makeQuery">makeQuery(qname, qtype)</a> ⇒ <code>object</code></dt>
 <dd><p>Make a DNS query message of type <a href="object">object</a> (see <a href="https://github.com/mafintosh/dns-packet">dns-packet</a>). Use this before calling <a href="#sendDohMsg">sendDohMsg</a>
 <br>
-The recursion desired flag will be set, and the ID in the header will be set to a random number.</p>
+The recursion desired flag will be set, and the ID in the header will be set to zero, per the RFC (<a href="https://tools.ietf.org/html/rfc8484#section-4.1">section 4.1</a>).</p>
 </dd>
 <dt><a href="#sendDohMsg">sendDohMsg(packet, url, method, headers)</a> ⇒ <code>Promise.&lt;object&gt;</code></dt>
 <dd><p>Send a DNS message over HTTPS to <code>url</code> using the given request method</p>
@@ -52,8 +52,7 @@ A super lame DNS over HTTPS stub resolver
 
 * [DohResolver](#DohResolver)
     * [new DohResolver(nameserver_url)](#new_DohResolver_new)
-    * [.query(qname, qtype, method)](#DohResolver+query) ⇒ <code>Promise.&lt;object&gt;</code>
-    * [.queryWithHeaders(qname, qtype, method, headers)](#DohResolver+queryWithHeaders) ⇒ <code>Promise.&lt;object&gt;</code>
+    * [.query(qname, qtype, method, headers)](#DohResolver+query) ⇒ <code>Promise.&lt;object&gt;</code>
 
 <a name="new_DohResolver_new"></a>
 
@@ -83,7 +82,7 @@ resolver.query('example.com', 'A')
 ```
 <a name="DohResolver+query"></a>
 
-### dohResolver.query(qname, qtype, method) ⇒ <code>Promise.&lt;object&gt;</code>
+### dohResolver.query(qname, qtype, method, headers) ⇒ <code>Promise.&lt;object&gt;</code>
 Perform a DNS lookup for the given query name and type.
 
 **Kind**: instance method of [<code>DohResolver</code>](#DohResolver)  
@@ -98,28 +97,7 @@ Perform a DNS lookup for the given query name and type.
 | qname | <code>string</code> |  | the domain name to query for (e.g. example.com) |
 | qtype | <code>string</code> | <code>&quot;A&quot;</code> | the type of record we're looking for (e.g. A, AAAA, TXT, MX) |
 | method | <code>string</code> | <code>&quot;POST&quot;</code> | Must be either "GET" or "POST" |
-
-<a name="DohResolver+queryWithHeaders"></a>
-
-### dohResolver.queryWithHeaders(qname, qtype, method, headers) ⇒ <code>Promise.&lt;object&gt;</code>
-This method is identical to [DohResolver.query](DohResolver.query), except this method allows you to pass in custom HTTP headers.
-<br>
-<b><i>IMPORTANT: If you don't provide the "Accept: application/dns-message" header, you probably won't get the response you're hoping for.
-See [RFC 8484 examples](https://tools.ietf.org/html/rfc8484#section-4.1.1) for examples of HTTPS headers for both GET and POST requests.</i></b>
-
-**Kind**: instance method of [<code>DohResolver</code>](#DohResolver)  
-**Returns**: <code>Promise.&lt;object&gt;</code> - The DNS response received  
-**Throws**:
-
-- [<code>MethodNotAllowedError</code>](#MethodNotAllowedError) If the method is not allowed (i.e. if it's not "GET" or "POST"), a MethodNotAllowedError will be thrown.
-
-
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| qname | <code>string</code> |  | the domain name to query for (e.g. example.com) |
-| qtype | <code>string</code> | <code>&quot;A&quot;</code> | the type of record we're looking for (e.g. A, AAAA, TXT, MX) |
-| method | <code>string</code> | <code>&quot;POST&quot;</code> | Must be either "GET" or "POST" |
-| headers | <code>object</code> |  | Custom HTTP headers to use in the DNS query |
+| headers | <code>object</code> | <code></code> | define HTTP headers to use in the DNS query <br> <b><i>IMPORTANT: If you don't provide the "Accept: application/dns-message" header, you probably won't get the response you're hoping for. See [RFC 8484 examples](https://tools.ietf.org/html/rfc8484#section-4.1.1) for examples of HTTPS headers for both GET and POST requests.</i></b> |
 
 <a name="ALLOWED_REQUEST_METHODS"></a>
 
@@ -146,7 +124,7 @@ Check if a request method is allowed
 ## makeQuery(qname, qtype) ⇒ <code>object</code>
 Make a DNS query message of type [object](object) (see [dns-packet](https://github.com/mafintosh/dns-packet)). Use this before calling [sendDohMsg](#sendDohMsg)
 <br>
-The recursion desired flag will be set, and the ID in the header will be set to a random number.
+The recursion desired flag will be set, and the ID in the header will be set to zero, per the RFC ([section 4.1](https://tools.ietf.org/html/rfc8484#section-4.1)).
 
 **Kind**: global function  
 **Returns**: <code>object</code> - The DNS query message  
