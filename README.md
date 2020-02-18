@@ -1,5 +1,5 @@
 <h3 align="center">
-  <img src="./public/dohjs.png" alt="DoHjs" width="70%"/>
+  <img src="https://dohjs.org/dohjs.png" alt="DoHjs" width="70%"/>
   <br><br>
   Javascript library for DNS over HTTPS lookups <b>IN YOUR BROWSER</b>
 </h3>
