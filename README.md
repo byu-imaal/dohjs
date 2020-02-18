@@ -9,7 +9,7 @@
 
 ---
 
-**Try sending DoH lookups from your browser - [https://dohjs.org/public](https://dohjs.org/public)**
+**Try sending DoH lookups from your browser - [https://bdohjs.org](https://dohjs.org)**
 
 # Why dohjs
 
@@ -24,7 +24,7 @@ According to RFC 8484, one of the use cases of the DNS over HTTPS protocol is
 
 - DoH library for DNS lookups **IN THE BROWSER**
 - Command line DNS over HTTPS lookup tool
-- [Web interface](https://dohjs.org/public)
+- [Web interface](https://dohjs.org)
 
 # Installation
 
@@ -120,12 +120,8 @@ npm test
 ```
 
 # Web interface
-The web interface is available at https://dohjs.org/public.
-If you want to run it locally, make sure you have the dev dependencies installed:
-```bash
-npm install --dev
-```
-Then run `npm start`.
+The web interface is available at https://dohjs.org.
+See the `ph-pages` branch for code.
 
 # License
 GPLv3 (see [LICENSE](./LICENSE))
