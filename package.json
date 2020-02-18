@@ -9,9 +9,7 @@
     "dns-packet": "^5.2.1"
   },
   "devDependencies": {
-    "@godaddy/dmd": "^1.0.1",
     "jest": "^25.1.0",
-    "jsdoc": "^3.6.3",
     "jsdoc-to-markdown": "^5.0.3",
     "live-server": "^1.2.1",
     "terser": "^4.6.3"
@@ -22,7 +20,7 @@
     "prestart": "npm run build",
     "build": "browserify lib/index.js --standalone doh -o dist/doh.js",
     "prepare": "npm run build && npx terser dist/doh.js --compress --mangle --output=dist/doh.min.js",
-    "docs": "jsdoc2md --plugin --plugin @godaddy/dmd --files lib/index.js > docs/README.md"
+    "docs": "jsdoc2md lib/index.js > docs/README.md"
   },
   "repository": {
     "type": "git",
