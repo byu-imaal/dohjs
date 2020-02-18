@@ -1,0 +1,68 @@
+<!-- Example HTML file using dohjs -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>dohjs example</title>
+
+  <!-- Load dohjs -->
+  <script src="https://cdn.jsdelivr.net/npm/dohjs@latest/dist/doh.min.js"></script>
+</head>
+<body>
+<table>
+  <tr>
+    <th>Field name</th>
+    <th>Value</th>
+  </tr>
+  <tr>
+    <td>URL</td>
+    <td><input type="text" id="url" value="https://dns.google/dns-query"></td>
+  </tr>
+  <tr>
+    <td>Query name</td>
+    <td><input type="text" id="qname" value="example.com"></td>
+  </tr>
+  <tr>
+    <td>Query type</td>
+    <td><input type="text" id="qtype" value="A"></td>
+  </tr>
+  <tr>
+    <td>Request method</td>
+    <td><input type="text" id="method" value="GET"></td>
+  </tr>
+</table>
+
+<input type="button" id="send-query" value="Send query">
+
+<pre id="output"></pre>
+
+<!-- Here's an example script where we use dohjs -->
+<script>
+  document.addEventListener('DOMContentLoaded', function (e) {
+    document.getElementById('send-query').addEventListener('click', function (e) {
+      const qname = document.getElementById('qname').value || '.';
+      const qtype = document.getElementById('qtype').value || 'A';
+      const method = document.getElementById('method').value || 'POST';
+      const url = document.getElementById('url').value;
+      const headers = {
+        'Accept': 'application/dns-message',
+        'User-Agent': 'dohjs/0.1.7'
+      };
+      if (!url) {
+        alert('You forgot to provide a URL!');
+        return;
+      }
+      const resolver = new doh.DohResolver(url);
+      resolver.query(qname, qtype, method, headers)
+        .then(response => {
+          document.getElementById('output').innerHTML = JSON.stringify(response, null, 4);
+        })
+        .catch(console.error);
+    });
+  });
+</script>
+</body>
+</html>
