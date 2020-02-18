@@ -1,9 +1,9 @@
 'use strict';
 
-const {makeQuery} = require('dohjs');
+const doh = require('dohjs');
 
 // create a new query message for example.com
-const msg = makeQuery('example.com', 'TXT');
+const msg = doh.makeQuery('example.com', 'TXT');
 
 // print out query message
 console.log(msg);
