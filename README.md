@@ -9,7 +9,7 @@
 
 ---
 
-**Try sending DoH lookups from your browser - [https://bdohjs.org](https://dohjs.org)**
+**Try sending DoH lookups from your browser - [https://dohjs.org](https://dohjs.org)**
 
 # Why dohjs
 
