@@ -48,7 +48,7 @@ Make sure you put it before your other `<script>` tags.
 
 ```html
 <!-- from CDN -->
-<script src="https://cdn.jsdelivr.net/npm/dohjs@0.1.3/dist/doh.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/dohjs@latest/dist/doh.min.js"></script>
 <!-- from local installation -->
 <script src="/path/to/node_modules/dohjs/dist/doh.min.js"></script>
 ```
