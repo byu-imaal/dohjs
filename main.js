@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
     const doDohBtn = document.getElementById('do-doh');
     const corsifyBtn = document.getElementById("corsify");
     const urlInputElem = document.getElementById('doh-url');
+    const urlDropdown = document.getElementById('url-dropdown');
 
     const errorFunction = (err) => {
         console.error(err);
@@ -50,8 +51,6 @@ document.addEventListener('DOMContentLoaded', function(e) {
 
     // just toggles button state
     const toggleCORSButton = function() {
-
-        console.log(urlInputElem.value);
         if (urlInputElem.value.includes(cors_proxy)) {
             corsifyBtn.classList.remove("btn-outline-primary");
             corsifyBtn.classList.add('btn-primary');
@@ -81,5 +80,12 @@ document.addEventListener('DOMContentLoaded', function(e) {
             urlInputElem.value = urlInputElem.value.substr(cors_proxy.length);
         }
         toggleCORSButton();
+    });
+
+    urlDropdown.addEventListener('click', function (e) {
+        console.log(e.target);
+        if ("dohurl" in e.target.dataset) {
+            urlInputElem.value = e.target.dataset.dohurl;
+        }
     });
 });
