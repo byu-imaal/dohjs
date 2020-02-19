@@ -1,4 +1,4 @@
-const cors_proxy = "https://cors.dohjs.workers.dev";
+const cors_proxy = "https://cors.dohjs.workers.dev/";
 
 document.addEventListener('DOMContentLoaded', function(e) {
     const responseElem = document.getElementById('doh-response');
