@@ -13,6 +13,7 @@
   <!-- jQuery and Bootstrap-->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
 </head>
@@ -48,14 +49,22 @@
           <div class="card-body">
             <form id="try-doh-form" class="needs-validation">
               <div class="form-group">
-                <label for="doh-url"></label><input class="form-control" type="text" id="doh-url" name="doh-url" value="" list="doh-resolvers" placeholder="e.g. https://example.com/dns-query" required>
-                <datalist id="doh-resolvers">
-                  <option value="https://dns.google/dns-query">Google</option>
-                  <option value="https://cloudflare-dns.com/dns-query">Cloudflare</option>
-                  <option value="https://dns.quad9.net/dns-query">Quad9</option>
-                  <option value="https://doh.opendns.com/dns-query">OpenDNS</option>
-                  <option value="https://doh.xfinity.com/dns-query">Comcast</option>
-                </datalist>
+                <label for="doh-url"></label>
+                <div class="input-group">
+                  <input class="form-control" type="text" id="doh-url" name="doh-url" value=""  placeholder="e.g. https://example.com/dns-query" required>
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-primary dropdown-toggle" title="Popular Resolvers" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                    <div class="dropdown-menu dropdown-menu-right border-secondary" id="url-dropdown">
+                      <h6 class="dropdown-header">Popular Resolvers</h6>
+
+                      <button type="button" class="dropdown-item" data-dohurl="https://dns.google/dns-query">Google</button>
+                      <button type="button" class="dropdown-item" data-dohurl="https://cloudflare-dns.com/dns-query">Cloudflare</button>
+                      <button type="button" class="dropdown-item" data-dohurl="https://dns.quad9.net/dns-query">Quad9</button>
+                      <button type="button" class="dropdown-item" data-dohurl="https://doh.opendns.com/dns-query">OpenDNS</button>
+                    </div>
+                  </div>
+                </div>
+
                 <div class="form-text small">
                   Where to send the DNS query
                   <br><br>
@@ -68,7 +77,6 @@
                       Use CORS Proxy
                     </button>
                   </div>
-
                 </div>
                 <div class="invalid-feedback">
                   Looks like you forgot to provide a URL. Oops
