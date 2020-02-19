@@ -17,6 +17,13 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
 </head>
+<style>
+.scrollable-menu {
+  height: auto;
+  max-height: 500px;
+  overflow-x: hidden;
+}
+</style>
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand py-0" href="#">
@@ -54,13 +61,63 @@
                   <input class="form-control" type="text" id="doh-url" name="doh-url" value=""  placeholder="e.g. https://example.com/dns-query" required>
                   <div class="input-group-append">
                     <button class="btn btn-outline-primary dropdown-toggle" title="Popular Resolvers" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
-                    <div class="dropdown-menu dropdown-menu-right border-secondary" id="url-dropdown">
-                      <h6 class="dropdown-header">Popular Resolvers</h6>
-
-                      <button type="button" class="dropdown-item" data-dohurl="https://dns.google/dns-query">Google</button>
-                      <button type="button" class="dropdown-item" data-dohurl="https://cloudflare-dns.com/dns-query">Cloudflare</button>
-                      <button type="button" class="dropdown-item" data-dohurl="https://dns.quad9.net/dns-query">Quad9</button>
-                      <button type="button" class="dropdown-item" data-dohurl="https://doh.opendns.com/dns-query">OpenDNS</button>
+                    <div class="dropdown-menu dropdown-menu-right border-secondary scrollable-menu" id="url-dropdown">
+                      <h6 class="dropdown-header">Known DoH Resolvers</h6>
+                      <button type="button" class="dropdown-item" data-dohurl="https://dns.adguard.com/dns-query">AdGuard (https://dns.adguard.com/dns-query)</button>
+                      <button type="button" class="dropdown-item" data-dohurl="https://dns-family.adguard.com/dns-query">AdGuard (https://dns-family.adguard.com/dns-query)</button>
+                      <button type="button" class="dropdown-item" data-dohurl="https://dns.google/dns-query">Google (https://dns.google/dns-query)</button>
+                      <button type="button" class="dropdown-item" data-dohurl="https://cloudflare-dns.com/dns-query">Cloudflare (https://cloudflare-dns.com/dns-query)</button>
+                      <button type="button" class="dropdown-item" data-dohurl="https://dns.quad9.net/dns-query">Quad9 (https://dns.quad9.net/dns-query)</button>
+                      <button type="button" class="dropdown-item" data-dohurl="https://dns9.quad9.net/dns-query">Quad9 (https://dns9.quad9.net/dns-query)</button>
+                      <button type="button" class="dropdown-item" data-dohurl="https://dns10.quad9.net/dns-query">Quad9 (https://dns10.quad9.net/dns-query)</button>
+                      <button type="button" class="dropdown-item" data-dohurl="https://dns11.quad9.net/dns-query">Quad9 (https://dns11.quad9.net/dns-query)</button>
+                      <button type="button" class="dropdown-item" data-dohurl="https://doh.opendns.com/dns-query">Cisco Umbrella/OpenDNS (https://doh.opendns.com/dns-query)</button>
+                      <button type="button" class="dropdown-item" data-dohurl="https://doh.cleanbrowsing.org/doh/family-filter/">CleanBrowsing (https://doh.cleanbrowsing.org/doh/family-filter/)</button>
+                      <button type="button" class="dropdown-item" data-dohurl="https://doh.xfinity.com/dns-query">Comcast (https://doh.xfinity.com/dns-query)</button>
+                      <button type="button" class="dropdown-item" data-dohurl="https://dohdot.coxlab.net/dns-query">Cox (https://dohdot.coxlab.net/dns-query)</button>
+                      <button type="button" class="dropdown-item" data-dohurl="https://dns.nextdns.io/">nextdns.io (https://dns.nextdns.io/)</button>
+                      <button type="button" class="dropdown-item" data-dohurl="https://dns.dnsoverhttps.net/dns-query">@chantra (https://dns.dnsoverhttps.net/dns-query)</button>
+                      <button type="button" class="dropdown-item" data-dohurl="https://doh.crypto.sx/dns-query">@jedisct1 (https://doh.crypto.sx/dns-query)</button>
+                      <button type="button" class="dropdown-item" data-dohurl="https://doh.powerdns.org">PowerDNS (https://doh.powerdns.org)</button>
+                      <button type="button" class="dropdown-item" data-dohurl="https://doh-fi.blahdns.com/dns-query">blahdns.com (https://doh-fi.blahdns.com/dns-query)</button>
+                      <button type="button" class="dropdown-item" data-dohurl="https://doh-jp.blahdns.com/dns-query">blahdns.com (https://doh-jp.blahdns.com/dns-query)</button>
+                      <button type="button" class="dropdown-item" data-dohurl="https://doh-de.blahdns.com/dns-query">blahdns.com (https://doh-de.blahdns.com/dns-query)</button>
+                      <button type="button" class="dropdown-item" data-dohurl="https://dns.dns-over-https.com/dns-query">NekomimiRouter.com (https://dns.dns-over-https.com/dns-query)</button>
+                      <button type="button" class="dropdown-item" data-dohurl="https://doh.securedns.eu/dns-query">SecureDNS.eu (https://doh.securedns.eu/dns-query)</button>
+                      <button type="button" class="dropdown-item" data-dohurl="https://dns.rubyfish.cn/dns-query">Rubyfish.cn (https://dns.rubyfish.cn/dns-query)</button>
+                      <button type="button" class="dropdown-item" data-dohurl="https://dns.containerpi.com/dns-query">ContainerPI (https://dns.containerpi.com/dns-query)</button>
+                      <button type="button" class="dropdown-item" data-dohurl="https://dns.containerpi.com/doh/family-filter/">ContainerPI (https://dns.containerpi.com/doh/family-filter/)</button>
+                      <button type="button" class="dropdown-item" data-dohurl="https://dns.containerpi.com/doh/secure-filter/">ContainerPI (https://dns.containerpi.com/doh/secure-filter/)</button>
+                      <button type="button" class="dropdown-item" data-dohurl="https://doh-2.seby.io/dns-query">@publicarray (https://doh-2.seby.io/dns-query)</button>
+                      <button type="button" class="dropdown-item" data-dohurl="https://doh.seby.io::8443/dns-query">@publicarray (https://doh.seby.io::8443/dns-query)</button>
+                      <button type="button" class="dropdown-item" data-dohurl="https://commons.host">Commons Host (https://commons.host)</button>
+                      <button type="button" class="dropdown-item" data-dohurl="https://doh.dnswarden.com/adblock">DnsWarden (https://doh.dnswarden.com/adblock)</button>
+                      <button type="button" class="dropdown-item" data-dohurl="https://doh.dnswarden.com/uncensored">DnsWarden (https://doh.dnswarden.com/uncensored)</button>
+                      <button type="button" class="dropdown-item" data-dohurl="https://doh.dnswarden.com/adult-filter">DnsWarden (https://doh.dnswarden.com/adult-filter)</button>
+                      <button type="button" class="dropdown-item" data-dohurl="https://dns-nyc.aaflalo.me/dns-query">aaflalo.me (https://dns-nyc.aaflalo.me/dns-query)</button>
+                      <button type="button" class="dropdown-item" data-dohurl="https://dns.aaflalo.me/dns-query">aaflalo.me (https://dns.aaflalo.me/dns-query)</button>
+                      <button type="button" class="dropdown-item" data-dohurl="https://doh.applied-privacy.net/query">Foundation for Applied Privacy (https://doh.applied-privacy.net/query)</button>
+                      <button type="button" class="dropdown-item" data-dohurl="https://doh.captnemo.in/dns-query">captnemo.in (https://doh.captnemo.in/dns-query)</button>
+                      <button type="button" class="dropdown-item" data-dohurl="https://doh.tiar.app/dns-query">Tiarap (https://doh.tiar.app/dns-query)</button>
+                      <button type="button" class="dropdown-item" data-dohurl="https://doh.tiarap.org/dns-query">Tiarap (https://doh.tiarap.org/dns-query)</button>
+                      <button type="button" class="dropdown-item" data-dohurl="https://doh.dns.sb/dns-query">DNS.SB (https://doh.dns.sb/dns-query)</button>
+                      <button type="button" class="dropdown-item" data-dohurl="https://rdns.faelix.net/">FAELIX (https://rdns.faelix.net/)</button>
+                      <button type="button" class="dropdown-item" data-dohurl="https://doh.li/dns-query">doh.li (https://doh.li/dns-query)</button>
+                      <button type="button" class="dropdown-item" data-dohurl="https://doh.armadillodns.net/dns-query">armadillodns.net (https://doh.armadillodns.net/dns-query)</button>
+                      <button type="button" class="dropdown-item" data-dohurl="https://jp.tiar.app/dns-query">jp.tiar.app (https://jp.tiar.app/dns-query)</button>
+                      <button type="button" class="dropdown-item" data-dohurl="https://jp.tiarap.org/dns-query">jp.tiar.app (https://jp.tiarap.org/dns-query)</button>
+                      <button type="button" class="dropdown-item" data-dohurl="https://doh.42l.fr/dns-query">Association 42l (https://doh.42l.fr/dns-query)</button>
+                      <button type="button" class="dropdown-item" data-dohurl="https://dns.hostux.net/dns-query">Hostux.net (https://dns.hostux.net/dns-query)</button>
+                      <button type="button" class="dropdown-item" data-dohurl="https://dns.hostux.net/ads">Hostux.net (https://dns.hostux.net/ads)</button>
+                      <button type="button" class="dropdown-item" data-dohurl="https://dns.aa.net.uk/dns-query">Andrews & Arnold (https://dns.aa.net.uk/dns-query)</button>
+                      <button type="button" class="dropdown-item" data-dohurl="https://adblock.mydns.network/dns-query">@matthewgall - mydns.network (https://adblock.mydns.network/dns-query)</button>
+                      <button type="button" class="dropdown-item" data-dohurl="https://ibksturm.synology.me/dns-query">ibksturm.synology.me (https://ibksturm.synology.me/dns-query)</button>
+                      <button type="button" class="dropdown-item" data-dohurl="https://jcdns.fun/dns-query">jcdns.fun (https://jcdns.fun/dns-query)</button>
+                      <button type="button" class="dropdown-item" data-dohurl="https://ibuki.cgnat.net/dns-query">@null31 (https://ibuki.cgnat.net/dns-query)</button>
+                      <button type="button" class="dropdown-item" data-dohurl="https://dns.twnic.tw/dns-query">TWNIC (https://dns.twnic.tw/dns-query)</button>
+                      <button type="button" class="dropdown-item" data-dohurl="https://example.doh.blockerdns.com/dns-query">blockerDNS (https://example.doh.blockerdns.com/dns-query)</button>
+                      <button type="button" class="dropdown-item" data-dohurl="https://dns.digitale-gesellschaft.ch/dns-query">Digitale Gesellschaft (https://dns.digitale-gesellschaft.ch/dns-query)</button>
+                      <button type="button" class="dropdown-item" data-dohurl="https://doh.libredns.gr/dns-query">LibreDNS (https://doh.libredns.gr/dns-query)</button>
                     </div>
                   </div>
                 </div>
