@@ -14,7 +14,7 @@ const allowed_origins = [/^(https?:\/\/)?localhost(:\d+)?/, /^(https:\/\/)?dohjs
 const corsHeaders = {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Methods': 'GET, POST',
-    'Access-Control-Allow-Headers': 'Content-Type',
+    'Access-Control-Allow-Headers': '*',
 };
 
 async function handleRequest(request) {
