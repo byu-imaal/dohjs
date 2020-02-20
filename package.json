@@ -1,6 +1,6 @@
 {
   "name": "dohjs",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "Do DNS over HTTPS lookups from your browser",
   "main": "lib/index.js",
   "dependencies": {
