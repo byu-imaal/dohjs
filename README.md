@@ -20,6 +20,7 @@ The purpose of dohjs is described well in the Internet standard document for DNS
 ### Features
 
 - Fully compliant DNS over HTTPS client implementation
+- Supports GET and POST wireformat queries
 - Works great in your browser
 - [Web interface](https://dohjs.org) to try dohjs
 - Command line DNS over HTTPS lookup tool
