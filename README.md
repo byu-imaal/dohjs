@@ -8,5 +8,23 @@ Thus, it can server as an example implementation of the DoHjs package.
 To handle CORS issues, DoHjs employs a CORS proxy. 
 The code for this proxy is in [cors_proxy.js](cors_proxy.js).
 The proxy is run as a Cloudflare Worker under the free-tier.
+To prevent misuse, the proxy is restricted to origins of `dohjs.org` and `localhost`.
 
-TODO: explain CORS and why we need a proxy
+#### What is CORS?
+Cross-origin resource sharing (CORS) is the method by which a domain can share its data with another domain.
+CORS is not typically an issue when dealing with images, stylesheets, or scripts.
+However, DoHjs makes `GET` and `POST` requests with uncommon content/headers thus restricting it.
+
+With CORS, your browser sends a special HTTP header specifying the orgin e.g. `Origin: dohsj.org`.
+It then checks the response for the `Access-Control-Allow-Origin` header to be either the origin or a wildcard.
+If it does not match or the response does not include that header, the browser drops the response.
+(Note that there are also preflight queries sent by the browser to check CORS without making sending the actual request.)
+
+#### How does a proxy fix this?
+The CORS proxy acts a wrapper for DoH requests.
+Requests first go to the proxy which in turn makes the request to the DoH resolver.
+They key is that the proxy modifies the response from the resolver to have the `Access-Control-Allow-Origin: *` header.
+This ensures that the browser will not drop the response.
+
+For more details [see this StackOverflow answer](https://stackoverflow.com/questions/43871637/no-access-control-allow-origin-header-is-present-on-the-requested-resource-whe/43881141#43881141).
+The proxy code is largely based on a template provided by Cloudflare which can be found [here]( https://developers.cloudflare.com/workers/templates/pages/cors_header_proxy/). 
