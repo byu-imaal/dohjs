@@ -13,8 +13,8 @@
   <!-- jQuery and Bootstrap-->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 </head>
 <body>
@@ -64,23 +64,26 @@
                     </div>
                   </div>
                 </div>
-
                 <div class="form-text small">
                   Where to send the DNS query
-                  <br><br>
-                  <div class="row align-items-center pr-3">
-                    <p class="col-8 my-auto">
-                      <span class="font-weight-bold font-italic">Hint:</span> If you run into CORS issues, click the button to prepend a proxy to the URL.
-                      <br>See also: <a href="https://stackoverflow.com/a/43881141/9638991">Stack Overflow answer about CORS issues</a>
-                    </p>
-                    <button class="btn btn-sm btn-outline-primary col-4 my-auto" type="button" id="corsify">
-                      Use CORS Proxy
-                    </button>
-                  </div>
                 </div>
                 <div class="invalid-feedback">
                   Looks like you forgot to provide a URL. Oops
                 </div>
+              </div>
+              <div>
+                <div class="custom-control custom-switch">
+                  <input type="checkbox" class="custom-control-input" id="cors-switch">
+                  <label class="custom-control-label" for="cors-switch" style="user-select: none;">Use CORS Proxy</label>
+                  <a tabindex="0" class="btn p-0 float-right" role="button" data-toggle="popover" data-trigger="focus" target="_blank" data-html="true"
+                     data-content="The CORS proxy can be used to avoid CORS errors when the resolver does not response with the proper headers.
+                     See the <a href='https://github.com/byu-imaal/dohjs/blob/gh-pages/README.md'>Github README</a> for additional details.">
+                    <i class="far fa-question-circle"></i>
+                  </a>
+                </div>
+                <p class="small mt-1">
+                  <span class="font-weight-bold font-italic">Hint:</span> If you run into errors, the proxy may help
+                </p>
               </div>
               <div class="form-group">
                 <label for="doh-qname"></label><input class="form-control" type="text" id="doh-qname" name="doh-qname" value="" placeholder=".">
