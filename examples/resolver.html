@@ -47,16 +47,12 @@
       const qtype = document.getElementById('qtype').value || 'A';
       const method = document.getElementById('method').value || 'POST';
       const url = document.getElementById('url').value;
-      const headers = {
-        'Accept': 'application/dns-message',
-        'User-Agent': 'dohjs/0.1.7'
-      };
       if (!url) {
         alert('You forgot to provide a URL!');
         return;
       }
       const resolver = new doh.DohResolver(url);
-      resolver.query(qname, qtype, method, headers)
+      resolver.query(qname, qtype, method)
         .then(response => {
           document.getElementById('output').innerHTML = JSON.stringify(response, null, 4);
         })
