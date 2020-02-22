@@ -17,18 +17,6 @@ document.addEventListener('DOMContentLoaded', function(e) {
         e.preventDefault()
     });
 
-    const forms = document.getElementsByClassName('needs-validation');
-    // Loop over them and prevent submission
-    var validation = Array.prototype.filter.call(forms, function (form) {
-        form.addEventListener('submit', function (event) {
-            if (form.checkValidity() === false) {
-                event.preventDefault();
-                event.stopPropagation();
-            }
-            form.classList.add('was-validated');
-        }, false);
-    });
-
     // FUNCTIONS
     const errorFunction = (err) => {
         console.error(err);
@@ -50,9 +38,9 @@ document.addEventListener('DOMContentLoaded', function(e) {
     };
 
     const doDoh = function() {
-        const dohForm = document.getElementById('try-doh-form');
-        dohForm.classList.remove('needs-validation');
-        dohForm.classList.add('was-validated');
+        const urlForm = document.getElementById('doh-url-form');
+        urlForm.classList.remove('needs-validation');
+        urlForm.classList.add('was-validated');
 
         responseElem.childNodes.forEach(node => node.remove());
 
