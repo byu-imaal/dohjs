@@ -14,7 +14,7 @@ Cross-origin resource sharing (CORS) is the method by which a domain can share i
 CORS is not typically an issue when dealing with images, stylesheets, scripts, etc..
 However, DoHjs makes `GET` and `POST` requests with uncommon content/headers thus restricting it.
 
-With CORS, your browser sends a special HTTP header specifying the orgin e.g. `Origin: dohsj.org`.
+With CORS, your browser sends a special HTTP header specifying the orgin e.g. `Origin: dohjs.org`.
 It then checks that the response has a `Access-Control-Allow-Origin` header and that the value is either the origin or wildcard (`*`).
 If it does not match or the response does not include that header, the browser drops the response.
 (Note that there are also preflight queries sent by the browser to check CORS without sending the actual request.)
