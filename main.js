@@ -38,9 +38,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
     };
 
     const doDoh = function() {
-        const urlForm = document.getElementById('doh-url-form');
-        urlForm.classList.remove('needs-validation');
-        urlForm.classList.add('was-validated');
+        document.getElementById('doh-url-form').classList.add('was-validated');
 
         responseElem.childNodes.forEach(node => node.remove());
 
