@@ -16,11 +16,13 @@
   },
   "scripts": {
     "test": "./test.sh",
-    "start": "npx live-server --open=/examples/resolver.html .",
+    "start": "npx live-server",
     "prestart": "npm run build",
-    "build": "browserify lib/index.js --standalone doh -o dist/doh.js",
-    "prepare": "npm run build && npx terser dist/doh.js --compress --mangle --output=dist/doh.min.js",
-    "docs": "jsdoc2md lib/index.js > docs/README.md"
+    "build": "npm run dohjs && npm run doh-script",
+    "prepare": "npm run build",
+    "docs": "jsdoc2md lib/index.js > docs/README.md",
+    "dohjs": "browserify lib/index.js --standalone doh -o dist/doh.js && npx terser dist/doh.js --compress --mangle --output=dist/doh.min.js",
+    "doh-script": "browserify lib/doh-script/doh-script-elem.js lib/doh-script/doh-script-helpers.js -o dist/doh-script.js && npx terser dist/doh-script.js --compress --mangle --output=dist/doh-script.min.js"
   },
   "repository": {
     "type": "git",
