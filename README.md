@@ -21,9 +21,10 @@ The purpose of dohjs is described well in the Internet standard document for DNS
 
 - Fully compliant DNS over HTTPS client implementation
 - Supports GET and POST wireformat queries
-- Works great in your browser
-- [Web interface](https://dohjs.org) to try dohjs
+- Custom `<doh-script>` tag to fetch scripts using DoH resolver of your choice (see [examples/doh-script](examples/doh-script) for example usage)
 - Command line DNS over HTTPS lookup tool
+- [Web interface](https://dohjs.org) to try dohjs
+- CORS proxy available on [https://dohjs.org](https://dohjs.org) to get past CORS errors associated with DoH ([CORS proxy source code here](https://github.com/byu-imaal/dohjs/blob/gh-pages/cors_proxy.js))
 
 # Installation
 
@@ -42,10 +43,7 @@ npm install -g dohjs
 
 # Quickstart
 
-To get started hacking with dohjs, checkout our [examples](examples).
-
-Be sure to include doh.js in your HTML file. You can include it from [jsdelivr](https://www.jsdelivr.com/) or your local installation.
-Make sure you put it before your other `<script>` tags.
+A simple way to start is to include doh.js in your HTML file. You can fetch it from [jsdelivr](https://www.jsdelivr.com/) or your local installation.
 
 ```html
 <!-- from CDN -->
@@ -59,6 +57,25 @@ you can `require()` dohjs like so:
 ```javascript
 const doh = require('dohjs');
 ```
+
+Now here's a quick example of a DoH lookup using dohjs:
+
+```javascript
+// create your resolver
+const resolver = new doh.DohResolver('https://1.1.1.1/dns-query');
+
+// lookup the A records for example.com and log the IP addresses to the console
+resolver.query('example.com', 'A')
+  .then(response => {
+    response.answers.forEach(ans => console.log(ans.data));
+  })
+  .catch(err => console.error(err));
+```
+
+# Examples
+
+Checkout our [examples](examples) to see dohjs in action.
+See [examples/README](examples/README.md) for a description of the examples.
 
 # Docs
 
