@@ -1,6 +1,6 @@
 {
   "name": "dohjs",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Do DNS over HTTPS lookups from your browser",
   "main": "lib/index.js",
   "dependencies": {
@@ -41,9 +41,6 @@
   "homepage": "https://github.com/byu-imaal/dohjs#readme",
   "bin": {
     "dohjs": "./bin/doh.js"
-  },
-  "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
   },
   "optionalDependencies": {},
   "files": [
