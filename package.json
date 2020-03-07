@@ -18,11 +18,11 @@
     "test": "./test.sh",
     "start": "npx live-server",
     "prestart": "npm run build",
-    "build": "npm run dohjs && npm run doh-script",
+    "build": "npm run dohjs && npm run doh-elems",
     "prepare": "npm run build",
     "docs": "jsdoc2md lib/index.js > docs/README.md",
     "dohjs": "browserify lib/index.js --standalone doh -o dist/doh.js && npx terser dist/doh.js --compress --mangle --output=dist/doh.min.js",
-    "doh-script": "browserify lib/doh-script/doh-script-elem.js lib/doh-script/doh-script-helpers.js -o dist/doh-script.js && npx terser dist/doh-script.js --compress --mangle --output=dist/doh-script.min.js"
+    "doh-elems": "browserify lib/elements/doh-elem-utils.js lib/elements/doh-script-elem.js lib/elements/doh-style-elem.js -o dist/doh-elems.js && npx terser dist/doh-elems.js --compress --mangle --output=dist/doh-elems.min.js"
   },
   "repository": {
     "type": "git",
