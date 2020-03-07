@@ -1,0 +1,40 @@
+<!-- Example of using the <doh-style> tag, which lets you load -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>dohjs example</title>
+
+  <!-- Load doh-style tag and friends -->
+  <script src="../../../dist/doh-elems.js"></script>
+
+  <doh-style src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" resolver="https://1.1.1.1/dns-query"></doh-style>
+</head>
+<body>
+
+<!-- Make it hidden until we load the css -->
+<div class="container-fluid" style="display: none;" id="root">
+  <div class="row mt-5">
+    <div class="col">
+      <!-- This alert was copied from https://getbootstrap.com/docs/4.4/components/alerts/#additional-content -->
+      <div class="alert alert-success" role="alert">
+        <h4 class="alert-heading">Well done!</h4>
+        <p>Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.</p>
+        <hr>
+        <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('doh-styles-loaded', function(e) {
+    console.log('all doh-styles loaded');
+    document.getElementById('root').style.display = 'block';
+  });
+</script>
+</body>
+</html>
