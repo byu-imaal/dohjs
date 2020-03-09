@@ -11,20 +11,36 @@
 
 **Try sending DoH lookups from your browser - [https://dohjs.org](https://dohjs.org)**
 
+# Contents
+
+- [Why DoHjs](#why-dohjs)
+  - [Features](#features)
+- [Installation](#installation)
+- [Quickstart](#quickstart)
+- [Custom elements](#custom-elements)
+  - [Loading of resources](#loading-of-resources)
+  - [Supported elements](#supported-elements)
+- [Examples](#examples)
+- [Docs](#docs)
+- [Tests](#tests)
+- [Web interface](#web-interface)
+- [CORS Issues](#cors-issues)
+- [License](#license)
+
 # Why dohjs
 
 The purpose of dohjs is described well in the Internet standard document for DNS over HTTPS ([RFC 8484](https://tools.ietf.org/html/rfc8484)):
 
 > allowing web applications to access DNS information via existing browser APIs in a safe way consistent with Cross Origin Resource Sharing (CORS)
 
-### Features
+## Features
 
 - Fully compliant DNS over HTTPS client implementation
 - Supports GET and POST wireformat queries
-- Custom `<doh-script>` tag to fetch scripts using DoH resolver of your choice (see [examples/doh-script](examples/doh-script) for example usage)
+- Custom elements (`<doh-script>`, `<doh-style>`) to use DoH resolver of your choice when fetching resources (see [examples/custom-elems](examples/custom-elems) for example usage)
 - Command line DNS over HTTPS lookup tool
 - [Web interface](https://dohjs.org) to try dohjs
-- CORS proxy available on [https://dohjs.org](https://dohjs.org) to get past CORS errors associated with DoH ([CORS proxy source code here](https://github.com/byu-imaal/dohjs/blob/gh-pages/cors_proxy.js))
+- CORS proxy to get past CORS errors associated with DoH ([source code here](https://github.com/byu-imaal/dohjs/blob/gh-pages/cors_proxy.js)). This is mainly for use on [https://dohjs.org](https://dohjs.org).
 
 # Installation
 
@@ -43,7 +59,7 @@ npm install -g dohjs
 
 # Quickstart
 
-A simple way to start is to include doh.js in your HTML file. You can fetch it from [jsdelivr](https://www.jsdelivr.com/) or your local installation.
+A simple way to start is to include doh.js in your HTML file. You can include it from [jsdelivr](https://www.jsdelivr.com/) or your local installation.
 
 ```html
 <!-- from CDN -->
@@ -61,7 +77,7 @@ const doh = require('dohjs');
 Now here's a quick example of a DoH lookup using dohjs:
 
 ```javascript
-// create your resolver
+// create your stub resolver
 const resolver = new doh.DohResolver('https://1.1.1.1/dns-query');
 
 // lookup the A records for example.com and log the IP addresses to the console
@@ -71,6 +87,54 @@ resolver.query('example.com', 'A')
   })
   .catch(err => console.error(err));
 ```
+
+# Custom elements
+
+There are times where you might want to fetch an external resource (e.g. css, js, images) to include in your application that requires a DNS lookup.
+DoHjs provides a relatively easy way to dynamically fetch those resources using the DoH server of your choosing.
+To use the custom elements, include `doh-elems.js` (`doh-elems.min.js` for minified version) from the CDN or from your local installation:
+```html
+<!-- from CDN -->
+<script src="https://cdn.jsdelivr.net/npm/dohjs@latest/dist/doh-elems.min.js"></script>
+<!-- from local installation -->
+<script src="/path/to/node_modules/dohjs/dist/doh-elems.min.js"></script>
+```
+
+Note that you have to use a normal script tag here.
+Then, you can use the custom tags.
+For example, the following code uses the `<doh-script>` tag to send a DNS query for `cdn.example.com` to the DoH server at `example.com`:
+```html
+<doh-script src="https://cdn.example.com/js/my-javascript.js" 
+            resolver="https://example.com/dns-query"></doh-script>
+```
+
+This means when a user visits your website, the DNS lookup will go through `https://example.com/dns-query` (instead of whatever their default DNS resolver is).
+We recommend using a trusted DoH server to avoid leaking unnecessary information about the individuals visiting your site.
+
+Note that the above example will require a DNS lookup for the name of the DoH server (`example.com`) which will be handled by the user's default resolver. To avoid this, you could use the IP address of the DoH server instead of the hostname:
+
+```html
+<doh-script src="https://example.com/js/my-javascript.js" 
+            resolver="https://1.2.3.4/dns-query"></doh-script>
+```
+
+**IMPORTANT: The SSL verification will fail here if the IP address is not included as a [subject alternative name](https://en.wikipedia.org/wiki/Subject_Alternative_Name) in `example.com`'s TLS certificate. This is a known issue and we're working on it**
+
+## Loading of resources
+
+Currently all of the custom `doh` tags are loaded sequentially.
+
+## Supported elements
+
+Custom elements currently supported:
+
+- `<doh-script>`
+- `<doh-style>`
+
+Custom elements with planned support:
+
+- `<doh-img>`
+
 
 # Examples
 
