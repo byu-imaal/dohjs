@@ -141,6 +141,8 @@ Custom elements with planned support:
 Checkout our [examples](examples) to see dohjs in action.
 See [examples/README](examples/README.md) for a description of the examples.
 
+To serve thr examples, run `npm start`. 
+Your browser will open up to an index of your current directory, then just navigate to the examples and open whatever html file you were wanting to look at.
 # Docs
 
 API documentation for dohjs can be found in [docs/README.md](docs/README.md).
