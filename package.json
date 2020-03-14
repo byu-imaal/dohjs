@@ -1,6 +1,6 @@
 {
   "name": "dohjs",
-  "version": "0.2.4",
+  "version": "0.2.6",
   "description": "DNS over HTTPS lookups from web apps",
   "main": "lib/index.js",
   "dependencies": {
