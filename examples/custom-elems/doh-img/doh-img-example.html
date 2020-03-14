@@ -10,10 +10,17 @@
 
   <!-- Load doh-img tag and friends -->
   <script src="../../../dist/doh-elems.js"></script>
+
+  <!-- BONUS - DoH style example too :) -->
+  <doh-style src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" resolver="https://1.1.1.1/dns-query"></doh-style>
 </head>
 <body>
 
-<doh-img src="https://dohjs.org/dohjs.png" resolver="https://1.1.1.1/dns-query"></doh-img>
+<div class="row">
+  <div class="col">
+    <doh-img src="https://www.playboy.com/static/favicon.ico" resolver="https://1.1.1.1/dns-query" class="border border-danger w-25"></doh-img>
+  </div>
+</div>
 
 </body>
 </html>
