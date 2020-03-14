@@ -52,10 +52,11 @@
 <div class="container-fluid">
   <div class="card mx-auto mt-4">
     <div class="card-header text-center">
+
       <h4>Demo of Special DoHjs Tags</h4>
     </div>
     <div class="card-body">
-      <p class="mx-auto" style="max-width: 64rem;">DoHjs provides special tags to load content (javascript,
+      <p class="mx-auto text-center" style="max-width: 72rem;">DoHjs provides special tags to load content (javascript,
         stylesheets,
         images) from a resolver of your choice. This allows circumnavigation of the user's default resolver and
         any
@@ -66,28 +67,52 @@
         such as a browser extension or IP-based filtering.
       </p>
     </div>
+<!--    <div class="card-header border-top text-center px-0">-->
+<!--      <h4>Ads</h4>-->
+<!--      Here we'll load a Google Adsense ad.-->
+<!--      (This will almost certainly be blocked on both sides if you use an adblocker.)-->
+<!--    </div>-->
+<!--    <div class="row text-center">-->
+<!--      <div class="col-12 col-md-6 pr-0 border-right">-->
+<!--        <div class="card-header">-->
+<!--          Standard-->
+<!--        </div>-->
+<!--          TODO. Place ad here once we're approved-->
+<!--      </div>-->
+<!--      <div class="col-12 col-md-6 pl-0">-->
+<!--        <div class="card-header">-->
+<!--          DoHjs-->
+<!--        </div>-->
+<!--          TODO. Place ad here using doh-script tag once we're approved-->
+
+<!--      </div>-->
+<!--    </div>-->
     <div class="card-header border-top text-center px-0">
-      <h4>Content</h4>
-      Here's a description about this junk
+      <h4>Adult Content Images</h4>
+      Here we load the favicon for <i>playboy.com</i> which is usually blocked by adult filters.
     </div>
     <div class="row text-center">
       <div class="col-12 col-md-6 pr-0 border-right">
         <div class="card-header">
           Standard
         </div>
-
+          <img class="img py-2" src="https://www.playboy.com/static/favicon.ico" alt="Playboy">
       </div>
       <div class="col-12 col-md-6 pl-0">
         <div class="card-header">
           DoHjs
         </div>
-
+          <doh-img class="img py-2" alt="Playboy" src="https://www.playboy.com/static/favicon.ico"
+                   resolver="https://1.1.1.1/dns-query"></doh-img>
       </div>
+    </div>
+    <div class="card-header border-top text-center px-0">
+      <h4 class="text-danger">More Coming Soon</h4>
     </div>
   </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/dohjs@latest/dist/doh.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/dohjs@0.2.7/dist/doh-elems.min.js"></script>
 <script src></script>
 
 </body>
