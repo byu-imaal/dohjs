@@ -21,8 +21,7 @@
     "build": "npm run dohjs && npm run doh-elems",
     "prepare": "npm run build",
     "docs": "jsdoc2md lib/index.js > docs/README.md",
-    "dohjs": "browserify lib/index.js --standalone doh -o dist/doh.js && npx terser dist/doh.js --compress --mangle --output=dist/doh.min.js",
-    "doh-elems": "browserify lib/elements/doh-elem-utils.js lib/elements/doh-script-elem.js lib/elements/doh-style-elem.js lib/elements/doh-img-elem.js -o dist/doh-elems.js && npx terser dist/doh-elems.js --compress --mangle --output=dist/doh-elems.min.js"
+    "dohjs": "browserify lib/index.js --standalone doh -o dist/doh.js && npx terser dist/doh.js --compress --mangle --output=dist/doh.min.js"
   },
   "repository": {
     "type": "git",
