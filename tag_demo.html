@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>DoHjs Tag Demo</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+
+  <!-- fontawesome -->
+  <script src="https://kit.fontawesome.com/ccf2e02061.js" crossorigin="anonymous"></script>
+  <!-- jQuery and Bootstrap-->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+          integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+          crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+          integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+          crossorigin="anonymous"></script>
+
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand py-0" href="#">
+    <img src="dohjs.png" class="img-fluid" alt="DoHjs" style="height: 40px;"/>
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="index.html">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="about.html">About</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" href="tag_demo.html">Tag Demo</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="https://github.com/byu-imaal/dohjs"><i class="fab fa-github"></i> Github</a>
+      </li>
+    </ul>
+
+  </div>
+</nav>
+<div class="container-fluid">
+  <div class="card mx-auto mt-4">
+    <div class="card-header text-center">
+      <h4>Demo of Special DoHjs Tags</h4>
+    </div>
+    <div class="card-body">
+      <p class="mx-auto" style="max-width: 64rem;">DoHjs provides special tags to load content (javascript,
+        stylesheets,
+        images) from a resolver of your choice. This allows circumnavigation of the user's default resolver and
+        any
+        filtering it may do.
+        <br>
+        Note that DoHjs only works on the DNS level and therefore content may still be blocked through other
+        means
+        such as a browser extension or IP-based filtering.
+      </p>
+    </div>
+    <div class="card-header border-top text-center px-0">
+      <h4>Content</h4>
+      Here's a description about this junk
+    </div>
+    <div class="row text-center">
+      <div class="col-12 col-md-6 pr-0 border-right">
+        <div class="card-header">
+          Standard
+        </div>
+        TEST
+
+      </div>
+      <div class="col-12 col-md-6 pl-0">
+        <div class="card-header">
+          DoHjs
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/dohjs@latest/dist/doh.min.js"></script>
+<script src></script>
+
+</body>
+</html>
