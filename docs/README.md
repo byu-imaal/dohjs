@@ -31,7 +31,7 @@ Allowed method are &quot;GET&quot; and &quot;POST&quot;</p>
 <br>
 The recursion desired flag will be set, and the ID in the header will be set to zero, per the RFC (<a href="https://tools.ietf.org/html/rfc8484#section-4.1">section 4.1</a>).</p>
 </dd>
-<dt><a href="#sendDohMsg">sendDohMsg(packet, url, method, headers)</a> ⇒ <code>Promise.&lt;object&gt;</code></dt>
+<dt><a href="#sendDohMsg">sendDohMsg(packet, url, method, headers, timeout)</a> ⇒ <code>Promise.&lt;object&gt;</code></dt>
 <dd><p>Send a DNS message over HTTPS to <code>url</code> using the given request method</p>
 </dd>
 </dl>
@@ -52,7 +52,7 @@ A super lame DNS over HTTPS stub resolver
 
 * [DohResolver](#DohResolver)
     * [new DohResolver(nameserver_url)](#new_DohResolver_new)
-    * [.query(qname, qtype, method, headers)](#DohResolver+query) ⇒ <code>Promise.&lt;object&gt;</code>
+    * [.query(qname, qtype, method, headers, timeout)](#DohResolver+query) ⇒ <code>Promise.&lt;object&gt;</code>
 
 <a name="new_DohResolver_new"></a>
 
@@ -82,7 +82,7 @@ resolver.query('example.com', 'A')
 ```
 <a name="DohResolver+query"></a>
 
-### dohResolver.query(qname, qtype, method, headers) ⇒ <code>Promise.&lt;object&gt;</code>
+### dohResolver.query(qname, qtype, method, headers, timeout) ⇒ <code>Promise.&lt;object&gt;</code>
 Perform a DNS lookup for the given query name and type.
 
 **Kind**: instance method of [<code>DohResolver</code>](#DohResolver)  
@@ -98,6 +98,7 @@ Perform a DNS lookup for the given query name and type.
 | qtype | <code>string</code> | <code>&quot;A&quot;</code> | the type of record we're looking for (e.g. A, AAAA, TXT, MX) |
 | method | <code>string</code> | <code>&quot;POST&quot;</code> | Must be either "GET" or "POST" |
 | headers | <code>object</code> | <code></code> | define HTTP headers to use in the DNS query <br> <b><i>IMPORTANT: If you don't provide the "Accept: application/dns-message" header, you probably won't get the response you're hoping for. See [RFC 8484 examples](https://tools.ietf.org/html/rfc8484#section-4.1.1) for examples of HTTPS headers for both GET and POST requests.</i></b> |
+| timeout | <code>number</code> |  | the number of milliseconds to wait for a response before aborting the request |
 
 <a name="ALLOWED_REQUEST_METHODS"></a>
 
@@ -151,7 +152,7 @@ console.log(msg);
 ```
 <a name="sendDohMsg"></a>
 
-## sendDohMsg(packet, url, method, headers) ⇒ <code>Promise.&lt;object&gt;</code>
+## sendDohMsg(packet, url, method, headers, timeout) ⇒ <code>Promise.&lt;object&gt;</code>
 Send a DNS message over HTTPS to `url` using the given request method
 
 **Kind**: global function  
@@ -163,20 +164,21 @@ Send a DNS message over HTTPS to `url` using the given request method
 | url | <code>string</code> | the url to send the DNS message to |
 | method | <code>string</code> | the request method to use ("GET" or "POST") |
 | headers | <code>object</code> | headers to send in the DNS request. The default headers for GET requests are |
+| timeout | <code>number</code> | the number of milliseconds to wait for a response before aborting the request |
 
 **Example**  
 ```js
 // imports
-const {makeQuery, sendDohMsg} = require('dohjs');
+ const {makeQuery, sendDohMsg} = require('dohjs');
 
-const url = 'https://cloudflare-dns.com/dns-query';
-const method = 'GET';
+ const url = 'https://cloudflare-dns.com/dns-query';
+ const method = 'GET';
 
-// create a query message
-let msg = makeQuery('example.com', 'TXT');
+ // create a query message
+ let msg = makeQuery('example.com', 'TXT');
 
-// send it and print out the response to the console
-sendDohMsg(msg, url, method)
-.then(response => response.answers.forEach(ans => console.log(ans.data.toString())))
-.catch(console.error);
+ // send it and print out the response to the console
+ sendDohMsg(msg, url, method)
+ .then(response => response.answers.forEach(ans => console.log(ans.data.toString())))
+ .catch(console.error);
 ```
