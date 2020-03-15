@@ -18,7 +18,7 @@
     "test": "./test.sh",
     "start": "npx live-server",
     "prestart": "npm run build",
-    "build": "npm run dohjs && npm run doh-elems",
+    "build": "npm run dohjs",
     "prepare": "npm run build",
     "docs": "jsdoc2md lib/index.js > docs/README.md",
     "dohjs": "browserify lib/index.js --standalone doh -o dist/doh.js && npx terser dist/doh.js --compress --mangle --output=dist/doh.min.js"
