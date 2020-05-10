@@ -7,6 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>DoHjs</title>
   <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="stylesheet" href="style.css">
 
   <!-- fontawesome -->
   <script src="https://kit.fontawesome.com/ccf2e02061.js" crossorigin="anonymous"></script>
@@ -18,121 +19,157 @@
 
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand py-0" href="#">
-      <img src="dohjs.png" class="img-fluid" alt="DoHjs" style="height: 40px;"/>
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link active" href="index.html">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="about.html">About</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="https://github.com/byu-imaal/dohjs"><i class="fab fa-github"></i> Github</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-  <div class="container-fluid">
-    <div class="row mt-4 align-content-between">
-      <div class="col-12 col-md-6 mx-auto mb-4">
-        <div class="card mx-auto" style="max-width: 48rem;">
-          <div class="card-header">
-            <h4>Try DoH!</h4>
-          </div>
-          <div class="card-body">
-            <form>
-              <div class="form-group">
-                <label for="doh-url"></label>
-                <div class="input-group  needs-validation" id="doh-url-form">
-                  <input class="form-control" type="text" id="doh-url" name="doh-url" value=""  placeholder="e.g. https://example.com/dns-query" required>
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-primary dropdown-toggle" title="Popular Resolvers" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
-                    <div class="dropdown-menu dropdown-menu-right border-secondary" id="url-dropdown">
-                      <h6 class="dropdown-header">Popular Resolvers</h6>
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand py-0" href="#">
+    <img src="dohjs.png" class="img-fluid" alt="DoHjs" style="height: 40px;"/>
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link active" href="index.html">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="about.html">About</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="https://github.com/byu-imaal/dohjs"><i class="fab fa-github"></i> Github</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="container-fluid">
+  <div class="row mt-4 align-content-between">
+    <!-- QUERY CARD -->
+    <div class="col-12 col-md-6 mx-auto mb-4">
+      <div class="card mx-auto" style="max-width: 48rem;">
+        <div class="card-header">
+          <h4>Try DoH!</h4>
+        </div>
+        <div class="card-body">
+          <form>
+            <!-- FORM INPUTS -->
+            <div class="form-group">
+              <label for="doh-url"></label>
+              <div class="input-group  needs-validation" id="doh-url-form">
+                <input class="form-control" type="text" id="doh-url" name="doh-url" value=""  placeholder="e.g. https://example.com/dns-query" required>
+                <div class="input-group-append">
+                  <button class="btn btn-outline-primary dropdown-toggle" title="Popular Resolvers" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                  <div class="dropdown-menu dropdown-menu-right border-secondary" id="url-dropdown">
+                    <h6 class="dropdown-header">Popular Resolvers</h6>
 
-                      <button type="button" class="dropdown-item" data-dohurl="https://dns.google/dns-query">Google</button>
-                      <button type="button" class="dropdown-item" data-dohurl="https://cloudflare-dns.com/dns-query">Cloudflare</button>
-                      <button type="button" class="dropdown-item" data-dohurl="https://dns.quad9.net/dns-query">Quad9</button>
-                      <button type="button" class="dropdown-item" data-dohurl="https://doh.opendns.com/dns-query">OpenDNS</button>
+                    <button type="button" class="dropdown-item" data-dohurl="https://dns.google/dns-query">Google</button>
+                    <button type="button" class="dropdown-item" data-dohurl="https://cloudflare-dns.com/dns-query">Cloudflare</button>
+                    <button type="button" class="dropdown-item" data-dohurl="https://dns.quad9.net/dns-query">Quad9</button>
+                    <button type="button" class="dropdown-item" data-dohurl="https://doh.opendns.com/dns-query">OpenDNS</button>
+                  </div>
+                </div>
+              </div>
+              <div class="form-text small">
+                Where to send the DNS query
+              </div>
+            </div>
+            <div>
+              <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="cors-switch">
+                <label class="custom-control-label" for="cors-switch" style="user-select: none;">Use CORS Proxy</label>
+                <a tabindex="0" class="btn p-0 float-right" role="button" data-toggle="popover" data-trigger="focus" target="_blank" data-html="true"
+                   data-content="The CORS proxy can be used to fix CORS errors when the resolver does not support resource sharing.
+                   See the <a href='https://github.com/byu-imaal/dohjs/blob/gh-pages/README.md'>Github README</a> for additional details.">
+                  <i class="far fa-question-circle"></i>
+                </a>
+              </div>
+              <p class="small mt-1">
+                <span class="font-weight-bold font-italic">Hint:</span> If you run into errors, the proxy may help
+              </p>
+            </div>
+            <div class="form-group">
+              <label for="doh-qname"></label><input class="form-control" type="text" id="doh-qname" name="doh-qname" value="" placeholder=".">
+              <div class="form-text small">Domain name to query for</div>
+            </div>
+            <div class="form-group">
+              <label for="doh-qtype"></label><input class="form-control" type="text" id="doh-qtype" name="doh-qtype" value="" placeholder="A">
+              <div class="form-text small">Type of query to send</div>
+            </div>
+            <div class="form-group">
+              <label for="doh-method"></label>
+              <select class="custom-select" id="doh-method">
+                <option value="POST" selected>POST</option>
+                <option value="GET">GET</option>
+              </select>
+              <div class="form-text small">Method to use in HTTPS request. GET or POST</div>
+            </div>
+
+            <!-- ADVANCED DROPDOWN -->
+            <hr>
+            <div class="panel-group" id="accordion">
+              <div class="panel panel-default">
+                <div class="panel-heading" id="advanced-header">
+                  <h6 class="panel-title text-primary" data-toggle="collapse" data-target="#advanced-collapse">
+                      Advanced Options
+                  </h6>
+                </div>
+                <div id="advanced-collapse" class="panel-collapse collapse">
+                  <div class="panel-body py-2">
+                    <div class="custom-control custom-switch">
+                      <input type="checkbox" class="custom-control-input" id="save-switch">
+                      <label class="custom-control-label" for="save-switch" style="user-select: none;">Save Query Params</label>
+                      <a tabindex="0" class="btn p-0 float-right" role="button" data-toggle="popover" data-trigger="focus" target="_blank" data-html="true"
+                         data-content="Enabling this setting will save your parameters (resolver, query type, query method, etc.) to your browser locally.
+                         This does not use cookies or any backend server.">
+                        <i class="far fa-question-circle"></i>
+                      </a>
+                    </div>
+                    <div class="custom-control custom-switch pt-1">
+                      <input type="checkbox" class="custom-control-input" id="dnssec-switch">
+                      <label class="custom-control-label" for="dnssec-switch" style="user-select: none;">Use DNSSEC</label>
                     </div>
                   </div>
                 </div>
-                <div class="form-text small">
-                  Where to send the DNS query
-                </div>
               </div>
-              <div>
-                <div class="custom-control custom-switch">
-                  <input type="checkbox" class="custom-control-input" id="cors-switch">
-                  <label class="custom-control-label" for="cors-switch" style="user-select: none;">Use CORS Proxy</label>
-                  <a tabindex="0" class="btn p-0 float-right" role="button" data-toggle="popover" data-trigger="focus" target="_blank" data-html="true"
-                     data-content="The CORS proxy can be used to fix CORS errors when the resolver does not support resource sharing.
-                     See the <a href='https://github.com/byu-imaal/dohjs/blob/gh-pages/README.md'>Github README</a> for additional details.">
-                    <i class="far fa-question-circle"></i>
-                  </a>
-                </div>
-                <p class="small mt-1">
-                  <span class="font-weight-bold font-italic">Hint:</span> If you run into errors, the proxy may help
-                </p>
-              </div>
-              <div class="form-group">
-                <label for="doh-qname"></label><input class="form-control" type="text" id="doh-qname" name="doh-qname" value="" placeholder=".">
-                <div class="form-text small">Domain name to query for</div>
-              </div>
-              <div class="form-group">
-                <label for="doh-qtype"></label><input class="form-control" type="text" id="doh-qtype" name="doh-qtype" value="" placeholder="A">
-                <div class="form-text small">Type of query to send</div>
-              </div>
-              <div class="form-group">
-                <label for="doh-method"></label>
-                <select class="custom-select" id="doh-method">
-                  <option value="POST" selected>POST</option>
-                  <option value="GET">GET</option>
-                </select>
-                <div class="form-text small">Method to use in HTTPS request. GET or POST</div>
-              </div>
-              <button class="btn btn-primary float-right" type="button" id="do-doh">
-                Send DoH query
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
-      <div class="col-12 col-md-6  mx-auto mb-4">
-        <div class="card mx-auto" style="max-width: 48rem;">
-          <div class="card-body">
-            <h4 class="card-title">Response</h4>
-            <div class="card-text">
-              <p>The response to your DNS query will show up here. <br><span class="small">(assuming you get a response)</span></p>
-              <hr>
-              <div id="doh-response"></div>
             </div>
+            <hr>
+            <!-- SEND BUTTON -->
+            <button class="btn btn-primary float-right" type="button" id="do-doh">
+              Send DoH query
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- RESULTS CARD -->
+    <div class="col-12 col-md-6  mx-auto mb-4">
+      <div class="card mx-auto" style="max-width: 48rem;">
+        <div class="card-body">
+          <h4 class="card-title">Response</h4>
+          <div class="card-text">
+            <p>The response to your DNS query will show up here. <br><span class="small">(assuming you get a response)</span></p>
+            <hr>
+            <div id="doh-response"></div>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
 
-  <!-- loading spinner modal -->
-  <div class="modal" id="loading-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content bg-transparent border-0">
-        <div class="d-flex justify-content-center">
-          <div class="spinner-border text-primary" role="status" style="width: 5rem; height: 5rem;">
-            <span class="sr-only">Loading...</span>
-          </div>
+<!-- LOADING SPINNER MODAL -->
+<div class="modal" id="loading-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content bg-transparent border-0">
+      <div class="d-flex justify-content-center">
+        <div class="spinner-border text-primary" role="status" style="width: 5rem; height: 5rem;">
+          <span class="sr-only">Loading...</span>
         </div>
       </div>
     </div>
   </div>
-  <script src="https://cdn.jsdelivr.net/npm/dohjs@latest/dist/doh.min.js"></script>
-  <script src="main.js"></script>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/dohjs@latest/dist/doh.min.js"></script>
+<script src="main.js"></script>
+<script src="localstorage.js"></script>
 </body>
 </html>

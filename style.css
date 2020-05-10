@@ -1,0 +1,14 @@
+.panel-title {
+    position: relative;
+}
+
+.panel-title::after {
+    content: "\f107";
+    right: 0;
+    position: absolute;
+    font-family: "FontAwesome";
+}
+
+.panel-title[aria-expanded="true"]::after {
+    content: "\f106";
+}
