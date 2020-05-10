@@ -2,7 +2,7 @@
 
 // defines the HTML IDs of every input that should be saved here.
 // Code is set up to handle anything with `value` and bootstrap checkboxes right now
-const formsOfInterest = ['doh-url', 'cors-switch', 'doh-method', 'doh-qtype'];
+const formsOfInterest = ['doh-url', 'cors-switch', 'doh-method', 'doh-qtype', 'dnssec-switch'];
 
 // we have to save references to listeners here so they can be removed later
 const listenerDict = {};
