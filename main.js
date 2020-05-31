@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
     const urlInputElem = document.getElementById('doh-url');
     const urlDropdown = document.getElementById('url-dropdown');
     const corsSwitch = document.getElementById('cors-switch');
+    const dnssecSwitch = document.getElementById("dnssec-switch");
 
     // SET UP
     // enable popovers
@@ -32,7 +33,6 @@ document.addEventListener('DOMContentLoaded', function(e) {
     };
 
     const successFunction = (response) => {
-
         // decode TXT buffer
         for (const a of response['answers']) {
             if (a.type === 'TXT') {
@@ -57,26 +57,35 @@ document.addEventListener('DOMContentLoaded', function(e) {
     };
 
     const doDoh = function() {
-        document.getElementById('doh-url-form').classList.add('was-validated');
-
         responseElem.childNodes.forEach(node => node.remove());
+        $loadingModal.modal('show');
+        document.getElementById('do-doh').disabled = true;
 
-        let url = urlInputElem.value;
-        if (!url) {
-            return;
-        }
+        let url = urlInputElem.value || "https://cloudflare-dns.com/dns-query";
         if (corsSwitch.checked) {
             url = cors_proxy + url;
         }
         const method = document.getElementById('doh-method').value || 'POST';
         const qname = document.getElementById('doh-qname').value || '.';
         const qtype = document.getElementById('doh-qtype').value || 'A';
-        $loadingModal.modal('show');
-        document.getElementById('do-doh').disabled = true;
-        const resolver = new doh.DohResolver(url);
-        resolver.query(qname, qtype, method)
-          .then(successFunction)
-          .catch(errorFunction);
+
+        const query = doh.makeQuery(qname, qtype);
+        if (dnssecSwitch.checked) {
+            query.additionals =  [{
+                type: 'OPT',
+                name: '.',
+                udpPayloadSize: 4096,
+                flags: 1 << 15, // DO bit
+                options: []
+            }]
+        }
+        console.log(JSON.stringify(query));
+        console.log();
+        console.log(query.flags & doh.AUTHENTIC_DATA);
+
+        doh.sendDohMsg(query, url, method)
+            .then(successFunction)
+            .catch(errorFunction);
     };
 
     // handle clicking of 'send' button and enter key

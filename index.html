@@ -53,9 +53,14 @@
           <form>
             <!-- FORM INPUTS -->
             <div class="form-group">
+              <div class="form-group">
+                <label for="doh-qname"></label><input class="form-control" type="text" id="doh-qname" name="doh-qname" value="" placeholder=".">
+                <div class="form-text small">Qname - Domain name to query for</div>
+              </div>
+              <hr>
               <label for="doh-url"></label>
-              <div class="input-group  needs-validation" id="doh-url-form">
-                <input class="form-control" type="text" id="doh-url" name="doh-url" value=""  placeholder="e.g. https://example.com/dns-query" required>
+              <div class="input-group" id="doh-url-form">
+                <input class="form-control" type="text" id="doh-url" name="doh-url" value=""  placeholder="https://cloudflare-dns.com/dns-query">
                 <div class="input-group-append">
                   <button class="btn btn-outline-primary dropdown-toggle" title="Popular Resolvers" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                   <div class="dropdown-menu dropdown-menu-right border-secondary" id="url-dropdown">
@@ -68,9 +73,7 @@
                   </div>
                 </div>
               </div>
-              <div class="form-text small">
-                Where to send the DNS query
-              </div>
+              <div class="form-text small">Resolver - Where to send the DNS query</div>
             </div>
             <div>
               <div class="custom-control custom-switch">
@@ -87,12 +90,8 @@
               </p>
             </div>
             <div class="form-group">
-              <label for="doh-qname"></label><input class="form-control" type="text" id="doh-qname" name="doh-qname" value="" placeholder=".">
-              <div class="form-text small">Domain name to query for</div>
-            </div>
-            <div class="form-group">
               <label for="doh-qtype"></label><input class="form-control" type="text" id="doh-qtype" name="doh-qtype" value="" placeholder="A">
-              <div class="form-text small">Type of query to send</div>
+              <div class="form-text small">Qtype - Type of query to send</div>
             </div>
             <div class="form-group">
               <label for="doh-method"></label>
@@ -100,7 +99,7 @@
                 <option value="POST" selected>POST</option>
                 <option value="GET">GET</option>
               </select>
-              <div class="form-text small">Method to use in HTTPS request. GET or POST</div>
+              <div class="form-text small">Method - HTTPS request method. GET or POST</div>
             </div>
 
             <!-- ADVANCED DROPDOWN -->
@@ -125,7 +124,7 @@
                     </div>
                     <div class="custom-control custom-switch pt-1">
                       <input type="checkbox" class="custom-control-input" id="dnssec-switch">
-                      <label class="custom-control-label" for="dnssec-switch" style="user-select: none;">Use DNSSEC</label>
+                      <label class="custom-control-label" for="dnssec-switch" style="user-select: none;">Send DO (DNSSEC OK) bit</label>
                     </div>
                   </div>
                 </div>
