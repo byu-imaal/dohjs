@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 'use strict';
 
-const {makeQuery, sendDohMsg} = require('..');
+const {makeQuery, sendDohMsg, prettify} = require('..');
 const dnsPacket = require('dns-packet');
 
 /**
@@ -113,6 +113,21 @@ parser.addArgument(
     metavar: '<address>/<source-prefix-len>'
   }
 );
+parser.addArgument(
+  ['-c', '--compact'],
+  {
+    help: 'Prints in compact form (1 line) as opposed to pretty-printed json',
+    action: 'storeTrue'
+  }
+)
+parser.addArgument(
+    ['--dnssec'],
+  {
+    help: 'Send DNSSEC OK bit',
+    action: 'storeTrue',
+    dest: 'dnssecOk'
+  }
+)
 let args = parser.parseArgs();
 if (args._subnet) {
   let split = args._subnet.split('/');
@@ -125,7 +140,7 @@ if (args._subnet) {
 
 dohLookup(args)
   .then(response => {
-    console.log(JSON.stringify(response))
+    console.log(JSON.stringify(prettify(response), null, args.compact ? 0 : 2))
   })
   .catch(reason => {
     console.error(reason);
