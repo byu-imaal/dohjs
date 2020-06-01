@@ -6,10 +6,10 @@
   "dependencies": {
     "argparse": "^1.0.10",
     "browserify": "^16.5.0",
-    "dns-packet": "^5.2.1"
+    "dns-packet": "^5.2.1",
+    "base32-encode": "^1.1.1"
   },
   "devDependencies": {
-    "base32-encode": "^1.1.1",
     "jest": "^25.1.0",
     "jsdoc-to-markdown": "^5.0.3",
     "live-server": "^1.2.1",
