@@ -26,9 +26,12 @@ doh_test --help
 doh_test --version
 doh_test https://dns.google/dns-query -m GET
 doh_test https://dns.google/dns-query
-doh_test https://cloudflare-dns.com/dns-query -t AAAA
-doh_test https://cloudflare-dns.com/dns-query -q example.net -t TXT -m GET
-doh_test https://dns.google/dns-query -m POST --ecs 1.2.3.4/24 -q google.com -t AAAA
-doh_test https://cloudflare-dns.com/dns-query -m POST --subnet ::/56 -q cloudflare.com -t A
+doh_test https://cloudflare-dns.com/dns-query dohjs.org AAAA
+doh_test https://cloudflare-dns.com/dns-query example.net TXT -m GET
+doh_test https://dns.google/dns-query -m POST +subnet 1.2.3.4/24 google.com AAAA
+doh_test https://cloudflare-dns.com/dns-query -m POST +subnet ::/56 cloudflare.com A
+doh_test https://cloudflare-dns.com/dns-query dohjs.org TXT -s -d
+doh_test https://cloudflare-dns.com/dns-query dohjs.org TXT -edns 12:0000
+
 echo "Command line tests passed"
 echo "All tests passed"

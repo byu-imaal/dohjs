@@ -64,8 +64,8 @@ parser.addArgument('+ecs',
 parser.addArgument('+dnssec',
     {help: 'Send DNSSEC OK bit', action: 'storeTrue'});
 parser.addArgument('+edns',
-    {help: 'Send arbitrary EDNS options in the format of <opt-code>:<hex-data>', metavar: '<opt-code>:<hex-data>',
-      action: 'append', dest: '_edns'})
+    {help: 'Send arbitrary EDNS options in the format of <opt-code>:<hex-data>. Can repeat arg multiple times',
+      metavar: '<opt-code>:<hex-data>', action: 'append', dest: '_edns'})
 
 // OTHER OPTIONS (-)
 parser.addArgument(['-m', '--method'],
