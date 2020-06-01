@@ -32,7 +32,7 @@ Positional arguments:
 Optional arguments:
   -h, --help            Show this help message and exit.
   -v, --version         Show program's version number and exit.
-  +ecs <address>/<source-prefix-len>
+  +subnet <address>/<source-prefix-len>
                         EDNS Client Subnet option to include, in the format
                         <address>/<source-prefix-len>
   +dnssec               Send DNSSEC OK bit

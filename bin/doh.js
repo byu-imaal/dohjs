@@ -58,7 +58,7 @@ parser.addArgument('qtype',
     {help: 'Query type. Default is "A"', defaultValue: 'A', nargs: '?'});
 
 // DNS OPTIONS (+)
-parser.addArgument('+ecs',
+parser.addArgument('+subnet',
   {help: 'EDNS Client Subnet option to include, in the format <address>/<source-prefix-len>', dest: '_subnet',
     metavar: '<address>/<source-prefix-len>'});
 parser.addArgument('+dnssec',
