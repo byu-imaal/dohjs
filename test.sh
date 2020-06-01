@@ -31,7 +31,8 @@ doh_test https://cloudflare-dns.com/dns-query example.net TXT -m GET
 doh_test https://dns.google/dns-query -m POST +subnet 1.2.3.4/24 google.com AAAA
 doh_test https://cloudflare-dns.com/dns-query -m POST +subnet ::/56 cloudflare.com A
 doh_test https://cloudflare-dns.com/dns-query dohjs.org TXT -s -d
-doh_test https://cloudflare-dns.com/dns-query dohjs.org TXT -edns 12:0000
+doh_test https://cloudflare-dns.com/dns-query dohjs.org TXT +edns 12:0000
+doh_test https://cloudflare-dns.com/dns-query dohjs.org TXT +edns 12:0000 +edns 10:0011223344556677
 
 echo "Command line tests passed"
 echo "All tests passed"
