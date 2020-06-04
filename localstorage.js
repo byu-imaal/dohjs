@@ -58,7 +58,16 @@ const handleSaveSwitch = () => {
 const getListenerType = (elem) => elem.type === "checkbox" ? 'change' : 'input';
 
 // sets the local storage for the given element
-const setStoreOne = (element, storeKey) =>
-    localStorage.setItem(storeKey, element.type === "checkbox" ? element.checked : element.value);
+const setStoreOne = (element, storeKey) => {
+    let val;
+    if (element.type === "checkbox" && !element.checked) {
+        val = "";
+    } else if (element.type === "checkbox") {
+        val = element.checked;
+    } else {
+        val = element.value;
+    }
+    localStorage.setItem(storeKey, val);
+};
 
 

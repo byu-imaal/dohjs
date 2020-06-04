@@ -33,25 +33,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
     };
 
     const successFunction = (response) => {
-        // decode TXT buffer
-        for (const a of response['answers']) {
-            if (a.type === 'TXT') {
-                a.data = a.data.toString();
-            }
-        }
-        // replace padding buffer with length
-        for (const a of response['additionals']) {
-            if (a.type === 'OPT') {
-                for (const o of a['options']) {
-                    if (o['code'] === 12) {
-                        o.length = o.data.length;
-                        delete o.data;
-                    }
-                }
-            }
-        }
-
-        responseElem.innerHTML = `<pre>${JSON.stringify(response, null, 4)}</pre>`;
+        responseElem.innerHTML = `<pre>${JSON.stringify(doh.prettify(response), null, 4)}</pre>`;
         $loadingModal.modal('hide');
         doDohBtn.disabled = false;
     };
@@ -75,13 +57,13 @@ document.addEventListener('DOMContentLoaded', function(e) {
                 type: 'OPT',
                 name: '.',
                 udpPayloadSize: 4096,
-                flags: 1 << 15, // DO bit
+                flags: doh.dnsPacket.DNSSEC_OK,
                 options: []
             }]
         }
         console.log(JSON.stringify(query));
         console.log();
-        console.log(query.flags & doh.AUTHENTIC_DATA);
+        console.log(query.flags & doh.dnsPacket.AUTHENTIC_DATA);
 
         doh.sendDohMsg(query, url, method)
             .then(successFunction)
