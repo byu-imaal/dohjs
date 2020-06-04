@@ -6,7 +6,8 @@
   "dependencies": {
     "argparse": "^1.0.10",
     "browserify": "^16.5.0",
-    "dns-packet": "^5.2.1"
+    "dns-packet": "^5.2.1",
+    "base32-encode": "^1.1.1"
   },
   "devDependencies": {
     "jest": "^25.1.0",
