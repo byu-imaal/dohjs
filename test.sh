@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-# exit if anything fails
-set -e
-
 # run integrated tests
 jest
 
@@ -11,13 +8,14 @@ echo -e "\nRunning command line tests...\n"
 
 doh_bin="./bin/doh.js"
 doh_test() {
+	printf "Running \"$doh_bin $*\"..."
 	output=$("$doh_bin" $@ 2>&1)
 	exit_code="$?"
 	if [ "$exit_code" -eq 0 ]; then
-		echo "Command \"$doh_bin $@\" PASSED"
+		printf "PASSED ✔️\n"
 	else
-		echo -e "Command \"$doh_bin $@\" FAILED"
-		echo -e "OUTPUT:\n$output" >&2
+		echo -e "FAILED"
+		echo -e "OUTPUT:\n$output"
 		exit "$exit_code"
 	fi
 }
