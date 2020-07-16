@@ -9,7 +9,7 @@
   <title>dohjs example</title>
 
   <!-- Load dohjs -->
-  <script src="https://cdn.jsdelivr.net/npm/dohjs@latest/dist/doh.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dohjs@latest/dist/doh.js"></script> 
 </head>
 <body>
 <table>
@@ -33,6 +33,10 @@
     <td>Request method</td>
     <td><input type="text" id="method" value="GET"></td>
   </tr>
+  <tr>
+    <td>Timeout (ms)</td>
+    <td><input type="number" id="timeout" value="1000"></td>
+  </tr>
 </table>
 
 <input type="button" id="send-query" value="Send query">
@@ -46,13 +50,14 @@
       const qname = document.getElementById('qname').value || '.';
       const qtype = document.getElementById('qtype').value || 'A';
       const method = document.getElementById('method').value || 'POST';
+      const timeout = parseInt(document.getElementById('timeout').value) || 1000;
       const url = document.getElementById('url').value;
       if (!url) {
         alert('You forgot to provide a URL!');
         return;
       }
       const resolver = new doh.DohResolver(url);
-      resolver.query(qname, qtype, method)
+      resolver.query(qname, qtype, method, null, timeout)
         .then(response => {
           document.getElementById('output').innerHTML = JSON.stringify(response, null, 4);
         })
