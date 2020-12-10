@@ -121,7 +121,7 @@ See the `gh-pages` branch for code.
 You'll probably get some CORS errors when sending DoH queries. A few ways to get around those are:
 
 - Use a CORS proxy. At [dohjs.org](https://dohjs.org), there is an option to use a CORS proxy if you want to try it out.
-- Disable CORS when you launch your browser sometimes works (e.g. `google-chome --user-data-dir=/tmp/asdf --disable-web-security`)
+- Disable CORS when you launch your browser sometimes works (e.g. `google-chrome --user-data-dir=/tmp/asdf --disable-web-security`)
 - Run your own DoH server that sets the Access-Control-Allow-Origin header appropriately (e.g. `Access-Control-Allow-Origin: *` to allow everyone)
 
 # License
