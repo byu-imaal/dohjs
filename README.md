@@ -1,5 +1,7 @@
 <h3 align="center">
-  <img src="https://dohjs.org/dohjs.png" alt="DoHjs" width="70%"/>
+  <a href="https://dohjs.org">
+    <img src="https://dohjs.org/dohjs.png" alt="DoHjs" width="70%"/>
+  </a>
   <br><br>
   Javascript library for DNS over HTTPS lookups in web apps
 </h3>
