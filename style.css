@@ -1,3 +1,4 @@
+/* panel-title controls drop downs with arrows */
 .panel-title {
     position: relative;
 }
@@ -11,4 +12,23 @@
 
 .panel-title[aria-expanded="true"]::after {
     content: "\f106";
+}
+
+/* dark mode stuff */
+[data-theme="dark"] {
+    background-color: #111 !important;
+    color: #eee;
+}
+
+[data-theme="dark"] pre {
+    color: #eee;
+}
+
+[data-theme="dark"] .bg-light {
+    background-color: #333 !important;
+}
+
+[data-theme="dark"] .form-control, [data-theme="dark"] .custom-select {
+    background-color: #ccc !important;
+    color: #222;
 }

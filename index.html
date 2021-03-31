@@ -36,16 +36,24 @@
         <a class="nav-link" href="about.html">About</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="https://github.com/byu-imaal/dohjs"><i class="fab fa-github"></i> Github</a>
+        <a class="nav-link" href="https://github.com/byu-imaal/dohjs"><i class="fab fa-github fa-fw"></i> Github</a>
       </li>
     </ul>
+    <form class="form-inline">
+      <div class="custom-control custom-switch ">
+        <input type="checkbox" class="custom-control-input" id="theme-switch" />
+        <label class="custom-control-label text-light" for="theme-switch"><i class="fas fa-moon fa-fw mr-1"></i>Dark Mode</label>
+      </div>
+
+    </form>
   </div>
+
 </nav>
 <div class="container-fluid">
   <div class="row mt-4 align-content-between">
     <!-- QUERY CARD -->
     <div class="col-12 col-md-6 mx-auto mb-4">
-      <div class="card mx-auto" style="max-width: 48rem;">
+      <div class="card bg-light mx-auto" style="max-width: 48rem;">
         <div class="card-header">
           <h4>Try DoH!</h4>
         </div>
@@ -141,10 +149,12 @@
     </div>
     <!-- RESULTS CARD -->
     <div class="col-12 col-md-6  mx-auto mb-4">
-      <div class="card mx-auto" style="max-width: 48rem;">
+      <div class="card bg-light mx-auto" style="max-width: 48rem;">
         <div class="card-body">
           <h4 class="card-title">Response</h4>
           <div class="card-text">
+            <button class="btn btn-outline-primary float-right" type="button" id="copy-resp" disabled><i class="far fa-clipboard fa-fw"></i> Copy</button>
+
             <p>The response to your DNS query will show up here. <br><span class="small">(assuming you get a response)</span></p>
             <hr>
             <div id="doh-response"></div>
@@ -167,9 +177,11 @@
     </div>
   </div>
 </div>
+
 <script src="https://cdn.jsdelivr.net/npm/dohjs@0.3.1/dist/doh.min.js"></script>
 <script src="main.js"></script>
 <script src="localstorage.js"></script>
 <script data-goatcounter="https://dohjs.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
 </body>
 </html>
