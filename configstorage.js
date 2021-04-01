@@ -8,8 +8,6 @@ const optForms = ['doh-url', 'cors-switch', 'doh-method', 'doh-qtype', 'dnssec-s
 // we have to save references to listeners here so they can be removed later
 const optListenerDict = {};
 const saveSwitch = document.getElementById('save-switch');
-// theme switch state is always saved
-const themeSwitch = document.getElementById('theme-switch');
 
 document.addEventListener('DOMContentLoaded', function(e) {
     saveSwitch.addEventListener("change", handleSaveSwitch);
@@ -25,10 +23,6 @@ document.addEventListener('DOMContentLoaded', function(e) {
     // if save switch is set now, set up listeners
     if (saveSwitch.checked)
         handleSaveSwitch();
-
-    themeSwitch.checked = localStorage.getItem(themeSwitch.id);
-    setTheme();
-    themeSwitch.addEventListener('change', setTheme);
 });
 
 // handle toggling of save switch
@@ -42,9 +36,8 @@ const handleSaveSwitch = () => {
         });
     }
     else {
-        // clear storage then restore theme switch
-        localStorage.clear();
-        setStoreOne(themeSwitch, themeSwitch.id)
+        // clear storage for optForms only
+        optForms.forEach((id) => localStorage.removeItem(id));
     }
 
     // for each form add/remove its listener
@@ -61,7 +54,6 @@ const handleSaveSwitch = () => {
     });
 };
 
-
 // get the event we should listen for on this given element
 const getListenerType = (elem) => elem.type === "checkbox" ? 'change' : 'input';
 
@@ -77,12 +69,3 @@ const setStoreOne = (element, storeKey) => {
     }
     localStorage.setItem(storeKey, val);
 };
-
-// saves theme to storage and set's doc attr
-const setTheme = () => {
-    setStoreOne(themeSwitch, themeSwitch.id)
-    themeSwitch.checked ? document.body.setAttribute("data-theme", "dark")
-        : document.body.removeAttribute("data-theme");
-}
-
-

@@ -24,7 +24,7 @@
     color: #eee;
 }
 
-[data-theme="dark"] .bg-light {
+[data-theme="dark"] .bg-light, [data-theme="dark"] .list-group-item {
     background-color: #333 !important;
 }
 
@@ -32,3 +32,7 @@
     background-color: #ccc !important;
     color: #222;
 }
+
+/*[data-theme="dark"] .button-outline {*/
+/*    color: #eee;*/
+/*}*/

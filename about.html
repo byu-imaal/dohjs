@@ -7,6 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>About DoHjs</title>
   <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="stylesheet" href="style.css">
 
   <!-- fontawesome -->
   <script src="https://kit.fontawesome.com/ccf2e02061.js" crossorigin="anonymous"></script>
@@ -36,13 +37,18 @@
         <a class="nav-link" href="https://github.com/byu-imaal/dohjs"><i class="fab fa-github"></i> Github</a>
       </li>
     </ul>
-
+    <form class="form-inline">
+      <div class="custom-control custom-switch ">
+        <input type="checkbox" class="custom-control-input" id="theme-switch" />
+        <label class="custom-control-label text-light" for="theme-switch"><i class="fas fa-moon fa-fw mr-1"></i>Dark Mode</label>
+      </div>
+    </form>
   </div>
 </nav>
 <div class="container-fluid">
   <div class="row mt-4 align-content-between">
     <div class="col-12 col-md-4 mb-4">
-      <div class="card mx-auto" style="max-width: 36rem;">
+      <div class="card bg-light mx-auto" style="max-width: 36rem;">
         <div class="card-header">
           <h5 class="my-auto">DoHjs Package</h5>
         </div>
@@ -50,11 +56,11 @@
           <p>This site uses DoHjs, a client-side JavaScript implementation of DNS over HTTPS for use in the browser.<br>
           DoHjs is available on npm and github under the GPLv3 license. DoHjs also includes a command line tool for issuing DNS queries over HTTPS.</p>
           <div class="row align-content-between justify-content-center px-2">
-            <a class="col-12 col-lg-4 btn btn-outline-dark mx-auto mb-2" href="https://www.npmjs.com/package/dohjs">
-              <i class="fab fa-npm"></i> Get on npm
+            <a class="col-12 col-lg-4 btn btn-outline-secondary mx-auto mb-2" href="https://www.npmjs.com/package/dohjs">
+              <i class="fab fa-npm fa-fw"></i> Get on npm
             </a>
-            <a class="col-12 col-lg-4 btn btn-outline-dark mx-auto mb-2" href="https://github.com/byu-imaal/dohjs">
-              <i class="fab fa-github"></i> View on Github
+            <a class="col-12 col-lg-4 btn btn-outline-secondary mx-auto mb-2" href="https://github.com/byu-imaal/dohjs">
+              <i class="fab fa-github fa-fw"></i> View on Github
             </a>
           </div>
 
@@ -62,7 +68,7 @@
       </div>
     </div>
     <div class="col-12 col-md-4 mb-4">
-      <div class="card mx-auto" style="max-width: 36rem">
+      <div class="card bg-light mx-auto" style="max-width: 36rem">
         <div class="card-header">
           <h5 class="my-auto">Why DoH? From the RFC authors.</h5>
         </div>
@@ -82,7 +88,7 @@
       </div>
     </div>
     <div class="col-12 col-md-4 mb-4">
-      <div class="card mx-auto" style="max-width: 36rem;">
+      <div class="card bg-light mx-auto" style="max-width: 36rem;">
         <div class="card-header">
           <h5 class="my-auto">Acknowledgements</h5>
         </div>
@@ -99,7 +105,7 @@
           <h5 class="mx-3 mt-4">Packages / Frameworks</h5>
           <p class="mx-3">DoHjs uses the following packages. Thanks to all developers and maintainers!</p>
           <hr class="mb-0">
-          <ul class="list-group list-group-flush m-0">
+          <ul class="list-group list-group-flush bg-light m-0">
             <li class="list-group-item"><a href="https://github.com/mafintosh/dns-packet">dns-packet</a></li>
             <li class="list-group-item"><a href="https://github.com/browserify/browserify">browserify</a></li>
             <li class="list-group-item"><a href="https://github.com/twbs/bootstrap">bootstrap</a></li>
@@ -114,6 +120,9 @@
 
   </div>
 </div>
+
+<script src="themer.js"></script>
 <script data-goatcounter="https://dohjs.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
 </body>
 </html>
