@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
 
 // saves theme to storage and set's body attr
 const setTheme = () => {
-    localStorage.setItem(themeSwitch.id, themeSwitch.checked ? true : "")
+    localStorage.setItem(themeSwitch.id, themeSwitch.checked ? true : "");
     themeSwitch.checked ? document.body.setAttribute("data-theme", "dark")
         : document.body.removeAttribute("data-theme");
 }

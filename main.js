@@ -93,14 +93,13 @@ document.addEventListener('DOMContentLoaded', function(e) {
         const elem = responseElem.getElementsByTagName('pre')[0];
         if (elem) {
             selectRange.selectNode(elem);
-            console.log('copy' + selectRange);
             window.getSelection().removeAllRanges();
             window.getSelection().addRange(selectRange);
             document.execCommand("copy");
             window.getSelection().removeAllRanges();
         }
         else {
-            console.log('No element to copy');
+            console.error('No element to copy');
         }
 
     });
