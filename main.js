@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
     const urlDropdown = document.getElementById('url-dropdown');
     const corsSwitch = document.getElementById('cors-switch');
     const dnssecSwitch = document.getElementById("dnssec-switch");
+    const copyRespBtn = document.getElementById('copy-resp');
 
     // SET UP
     // enable popovers
@@ -23,6 +24,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
         console.error(err);
         $loadingModal.modal('hide');
         doDohBtn.disabled = false;
+        copyRespBtn.disabled = true;
         responseElem.innerHTML = `
 <div class="text-danger">
     An error occurred with your DNS request
@@ -36,6 +38,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
         responseElem.innerHTML = `<pre>${JSON.stringify(doh.prettify(response), null, 4)}</pre>`;
         $loadingModal.modal('hide');
         doDohBtn.disabled = false;
+        copyRespBtn.disabled = false;
     };
 
     const doDoh = function() {
@@ -83,5 +86,21 @@ document.addEventListener('DOMContentLoaded', function(e) {
         if ("dohurl" in e.target.dataset) {
             urlInputElem.value = e.target.dataset.dohurl;
         }
+    });
+
+    copyRespBtn.addEventListener('click', function (e) {
+        const selectRange = document.createRange();
+        const elem = responseElem.getElementsByTagName('pre')[0];
+        if (elem) {
+            selectRange.selectNode(elem);
+            window.getSelection().removeAllRanges();
+            window.getSelection().addRange(selectRange);
+            document.execCommand("copy");
+            window.getSelection().removeAllRanges();
+        }
+        else {
+            console.error('No element to copy');
+        }
+
     });
 });

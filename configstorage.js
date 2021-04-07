@@ -1,17 +1,18 @@
-// JS for syncing form inputs to local storage (iff enabled)
+// JS for syncing form inputs to local storage
 
 // defines the HTML IDs of every input that should be saved here.
 // Code is set up to handle anything with `value` and bootstrap checkboxes right now
-const formsOfInterest = ['doh-url', 'cors-switch', 'doh-method', 'doh-qtype', 'dnssec-switch'];
+// opt forms require use to select `save-switch`
+const optForms = ['doh-url', 'cors-switch', 'doh-method', 'doh-qtype', 'dnssec-switch'];
 
 // we have to save references to listeners here so they can be removed later
-const listenerDict = {};
+const optListenerDict = {};
 const saveSwitch = document.getElementById('save-switch');
 
 document.addEventListener('DOMContentLoaded', function(e) {
     saveSwitch.addEventListener("change", handleSaveSwitch);
     // try loading everything. If anything loads, set the save switch
-    formsOfInterest.forEach((id) => {
+    optForms.forEach((id) => {
         const elem = document.getElementById(id);
         const val = localStorage.getItem(id);
         if (val !== null ) {
@@ -29,30 +30,29 @@ const handleSaveSwitch = () => {
     console.log('change event: ' + saveSwitch.checked);
     // either save or clear storage
     if (saveSwitch.checked) {
-        formsOfInterest.forEach((id) => {
+        optForms.forEach((id) => {
             const elem = document.getElementById(id);
             setStoreOne(elem, id);
         });
     }
     else {
-        localStorage.clear();
-
+        // clear storage for optForms only
+        optForms.forEach((id) => localStorage.removeItem(id));
     }
 
     // for each form add/remove its listener
-    formsOfInterest.forEach((id) => {
+    optForms.forEach((id) => {
         const elem = document.getElementById(id);
         if (saveSwitch.checked) {
-            listenerDict[id] = () => setStoreOne(elem, id);
-            elem.addEventListener(getListenerType(elem), listenerDict[id]);
+            optListenerDict[id] = () => setStoreOne(elem, id);
+            elem.addEventListener(getListenerType(elem), optListenerDict[id]);
         }
         else {
-            elem.removeEventListener(getListenerType(elem), listenerDict[id]);
-            delete listenerDict[id];
+            elem.removeEventListener(getListenerType(elem), optListenerDict[id]);
+            delete optListenerDict[id];
         }
     });
 };
-
 
 // get the event we should listen for on this given element
 const getListenerType = (elem) => elem.type === "checkbox" ? 'change' : 'input';
@@ -69,5 +69,3 @@ const setStoreOne = (element, storeKey) => {
     }
     localStorage.setItem(storeKey, val);
 };
-
-
