@@ -127,4 +127,4 @@ You'll probably get some CORS errors when sending DoH queries. A few ways to get
 - Run your own DoH server that sets the Access-Control-Allow-Origin header appropriately (e.g. `Access-Control-Allow-Origin: *` to allow everyone)
 
 # License
-GPLv3 (see [LICENSE](./LICENSE))
+MIT (see [LICENSE](./LICENSE))
