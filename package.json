@@ -7,7 +7,7 @@
     "argparse": "^1.0.10",
     "base32-encode": "^1.1.1",
     "browserify": "^16.5.0",
-    "dns-packet": "^5.2.1",
+    "dns-packet": "^5.6.1",
     "glob-parent": "^5.1.2",
     "ws": "^7.4.6"
   },
